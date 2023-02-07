@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-  displayName: 'cineman-backend-e2e',
+  displayName: 'backend-e2e',
   preset: '../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -15,5 +15,5 @@ export default {
     '^.+\\.[tj]s$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/cineman-backend-e2e',
+  coverageDirectory: '../../coverage/backend-e2e',
 };
