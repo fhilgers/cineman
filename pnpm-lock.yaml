@@ -33,6 +33,8 @@ specifiers:
   '@nrwl/workspace': 15.6.3
   '@nx-tools/container-metadata': ^4.0.3
   '@nx-tools/nx-container': ^4.0.3
+  '@nx-tools/nx-prisma': ^4.0.3
+  '@prisma/client': ^4.5.0
   '@types/jest': 28.1.1
   '@types/node': 18.7.1
   '@typescript-eslint/eslint-plugin': ^5.51.0
@@ -47,6 +49,7 @@ specifiers:
   jest-preset-angular: ~12.2.6
   nx: 15.6.3
   prettier: ^2.8.4
+  prisma: ^4.5.0
   reflect-metadata: ^0.1.13
   rxjs: ^7.8.0
   ts-jest: 28.0.5
@@ -67,6 +70,7 @@ dependencies:
   '@nestjs/common': 9.3.7_mnr6j2del53muneqly5h4y27ai
   '@nestjs/core': 9.3.7_ipss6dxf5icme2x7c6jvrkkrmq
   '@nestjs/platform-express': 9.3.7_zmctrozi6xxh3beaccl6ebop6u
+  '@prisma/client': 4.10.0_prisma@4.10.0
   axios: 1.3.2
   reflect-metadata: 0.1.13
   rxjs: 7.8.0
@@ -95,6 +99,7 @@ devDependencies:
   '@nrwl/workspace': 15.6.3_3joxs7tzhkrjjacnd53qs32tau
   '@nx-tools/container-metadata': 4.0.3_3k3wurq3bmpgs3g7gmjrivmoqe
   '@nx-tools/nx-container': 4.0.3_3k3wurq3bmpgs3g7gmjrivmoqe
+  '@nx-tools/nx-prisma': 4.0.3_2ugdlhbvf3cewfony22obkappi
   '@types/jest': 28.1.1
   '@types/node': 18.7.1
   '@typescript-eslint/eslint-plugin': 5.51.0_zsll5hqugnkcrqry7wilrq4a2e
@@ -108,6 +113,7 @@ devDependencies:
   jest-preset-angular: 12.2.6_hi7in4saswpwnouh5s5ouipqxe
   nx: 15.6.3
   prettier: 2.8.4
+  prisma: 4.10.0
   ts-jest: 28.0.5_7fcfng4b65nlbamylqx3bgeyaq
   ts-node: 10.9.1_rhpwi32gjip3gggyfzgffz3q2q
   typescript: 4.8.4
@@ -3447,6 +3453,20 @@ packages:
       tmp: 0.2.1
     dev: true
 
+  /@nx-tools/nx-prisma/4.0.3_2ugdlhbvf3cewfony22obkappi:
+    resolution: {integrity: sha512-uTCJ7UsBv1uzQi5l3xrur/haXdW/Y9eU6ffC1UkFKSvEDHpkLqXLe6R4RRgcGBfJMFv2ws0UhezwPc3anAP3Sg==}
+    peerDependencies:
+      '@nrwl/devkit': ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0
+      prisma: ^4.5.0
+      ts-node: '*'
+    dependencies:
+      '@nrwl/devkit': 15.6.3_nx@15.6.3+typescript@4.8.4
+      '@nx-tools/core': 4.0.3_@nrwl+devkit@15.6.3
+      '@swc/helpers': 0.4.14
+      prisma: 4.10.0
+      ts-node: 10.9.1_rhpwi32gjip3gggyfzgffz3q2q
+    dev: true
+
   /@octokit/auth-token/2.5.0:
     resolution: {integrity: sha512-r5FVUJCOLl19AxiuZD2VRZ/ORjp/4IN98Of6YJoJOkY75CIBuYfmiNHGrDwXr+aLGG55igl9QrxX3hbiXlLb+g==}
     dependencies:
@@ -3552,6 +3572,28 @@ packages:
       esquery: 1.4.0
       typescript: 4.8.4
     dev: true
+
+  /@prisma/client/4.10.0_prisma@4.10.0:
+    resolution: {integrity: sha512-sBmYb1S6SMKFIESaLMfKqWSalv3pH73cMCsFt9HslJvYjIIcKQCA6PDL2O4SZGWvc4JBef9cg5Gd7d9x3AtKjw==}
+    engines: {node: '>=14.17'}
+    requiresBuild: true
+    peerDependencies:
+      prisma: '*'
+    peerDependenciesMeta:
+      prisma:
+        optional: true
+    dependencies:
+      '@prisma/engines-version': 4.10.0-84.ca7fcef713137fa11029d519a9780db130cca91d
+      prisma: 4.10.0
+    dev: false
+
+  /@prisma/engines-version/4.10.0-84.ca7fcef713137fa11029d519a9780db130cca91d:
+    resolution: {integrity: sha512-UVpmVlvSaGfY4ue+hh8CTkIesbuXCFUfrr8zk//+u85WwkKfWMtt6nLB2tNSzR1YO8eAA8+HqNf8LM7mnXIq5w==}
+    dev: false
+
+  /@prisma/engines/4.10.0:
+    resolution: {integrity: sha512-ZPPo7q+nQZdTlPFedS7mFXPE3oZ2kWtTh3GO4sku0XQ8ikLqEyinuTPJbQCw/8qel2xglIEQicsK6yI4Jgh20A==}
+    requiresBuild: true
 
   /@renovate/pep440/1.0.0:
     resolution: {integrity: sha512-k3pZVxGEGpU7rpH507/9vxfFjuxX7qx4MSj9Fk+6zBsf/uZmAy8x97dNtZacbge7gP9TazbW1d7SEb5vsOmKlw==}
@@ -9943,6 +9985,14 @@ packages:
       ansi-styles: 5.2.0
       react-is: 18.2.0
     dev: true
+
+  /prisma/4.10.0:
+    resolution: {integrity: sha512-xUHcF3Glc8QGgW8x0rfPITvyyTo04fskUdG7pI4kQbvDX/rhzDP4046x/FvazYqYHXMLR5/KTIi2p2Gth5vKOQ==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+    requiresBuild: true
+    dependencies:
+      '@prisma/engines': 4.10.0
 
   /proc-log/3.0.0:
     resolution: {integrity: sha512-++Vn7NS4Xf9NacaU9Xq3URUuqZETPsf8L4j5/ckhaRYsfPeRyzGw+iDjFhV/Jr3uNmTvvddEJFWh5R1gRgUH8A==}
