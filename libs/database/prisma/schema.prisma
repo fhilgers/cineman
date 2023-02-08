@@ -7,7 +7,90 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Todo {
-  id String @id @default(cuid())
-  @@map("todos")
+
+model Ticket {
+  id         Int      @id @default(autoincrement())
+  price      Int
+  owner      Customer @relation(references: [id], fields: [ownerId])
+  ownerId    Int
+  show       Show     @relation(references: [theaterId, movieId], fields: [theaterId, movieId])
+  theaterId  Int
+  movieId    Int
+  seat       Seat     @relation(references: [id, theaterId], fields: [seatId, theaterId])
+  seatId     Int
+}
+
+model Customer {
+  id      Int      @id @default(autoincrement())
+  name    String
+  address String
+  tickets Ticket[]
+  Rating  Rating[]
+}
+
+model Movie {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  duration    Float
+  age         Int
+  rating      Rating[]
+  show        Show[]
+}
+
+model Rating {
+  stars      Float
+  review     String
+  customer   Customer @relation(fields: [customerId], references: [id])
+  movie      Movie    @relation(fields: [movieId], references: [id])
+  customerId Int
+  movieId    Int
+
+  @@id([customerId, movieId])
+}
+
+model Show {
+  date      DateTime
+  time      DateTime
+  theater   Theater  @relation(fields: [theaterId], references: [id])
+  movie     Movie    @relation(fields: [movieId], references: [id])
+  theaterId Int
+  movieId   Int
+  tickets   Ticket[]
+
+  @@id([theaterId, movieId])
+}
+
+model Theater {
+  id             Int    @id @default(autoincrement())
+  name           String
+  features       TheaterFeature[]
+  shows          Show[]
+  seats          Seat[]
+}
+
+model Seat {
+  id        Int @id @default(autoincrement())
+  number    Int
+  row       Int
+  type      SeatType
+
+  theater   Theater @relation(fields: [theaterId], references: [id], onDelete: Cascade)
+  theaterId Int
+
+  tickets Ticket[]
+
+  @@unique([id, theaterId])
+}
+
+model TheaterFeature {
+  name String @id
+  
+  theaters Theater[]
+}
+
+enum SeatType {
+  NORMAL
+  DELUXE
+  REMOVABLE
 }

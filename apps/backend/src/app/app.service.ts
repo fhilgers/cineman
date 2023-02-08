@@ -1,22 +1,24 @@
 import { Injectable } from '@nestjs/common';
-
-import { PrismaClient } from '@cineman/database';
+import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class AppService {
 
-  client: PrismaClient = new PrismaClient();
-
-  constructor() {
-      this.client.$connect
-  }
+  constructor(private prisma: PrismaService) {}
 
   async createData() {
-    return this.client.todo.create({ data: {} });
+    return this.prisma.movie.create({
+      data: {
+        name: 'Movie',
+        description: 'A movie',
+        age: 12,
+        duration: 15,
+      }
+    })
   }
 
   async getData() {
-    return this.client.todo.findMany({});
+    return this.prisma.movie.findMany({});
   }
 
 }
