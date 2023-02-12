@@ -4,15 +4,22 @@
  */
 
 import { Logger, ValidationPipe } from '@nestjs/common';
-import { NestFactory } from '@nestjs/core';
+import { HttpAdapterHost, NestFactory } from '@nestjs/core';
+import { useContainer } from 'class-validator';
 
 import { AppModule } from './app/app.module';
+import { PrismaClientExceptionFilter, PrismaClientUnknownExceptionFilter, PrismaClientValidationExceptionFilter } from './prisma-client-exception.filter';
 import { PrismaService } from './prisma/prisma.service';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  useContainer(app.select(AppModule), { fallbackOnErrors: true });
   const globalPrefix = '';
   app.setGlobalPrefix(globalPrefix);
+
+  const { httpAdapter } = app.get(HttpAdapterHost);
+  app.useGlobalFilters(new PrismaClientExceptionFilter(httpAdapter), new PrismaClientUnknownExceptionFilter(httpAdapter), new PrismaClientValidationExceptionFilter(httpAdapter))
+
   app.useGlobalPipes(new ValidationPipe({whitelist: true, enableDebugMessages: true, transform: true}));
   app.enableCors();
   const port = process.env.PORT || 3333;
