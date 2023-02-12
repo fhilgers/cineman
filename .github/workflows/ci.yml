@@ -15,6 +15,7 @@ jobs:
         npx nx-cloud record -- npx nx workspace-lint
         npx nx-cloud record -- npx nx format:check
       parallel-commands-on-agents: |
+        npx nx prisma-generate database
         npx nx affected --target=lint --parallel=3 & npx nx affected --target=test --parallel=3 --configuration=ci & npx nx affected --target=build --parallel=3
 
   agents:
