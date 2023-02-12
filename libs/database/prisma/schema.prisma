@@ -1,5 +1,5 @@
 generator client {
-  provider        = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -7,86 +7,87 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model Ticket {
-  id         Int      @id @default(autoincrement())
+  id         String   @id @default(uuid()) @db.Uuid
   price      Int
-  owner      Customer @relation(references: [id], fields: [ownerId])
-  ownerId    Int
-  show       Show     @relation(references: [theaterId, movieId], fields: [theaterId, movieId])
-  theaterId  Int
-  movieId    Int
-  seat       Seat     @relation(references: [id, theaterId], fields: [seatId, theaterId])
-  seatId     Int
+  ownerId    String   @db.Uuid
+  owner      Customer @relation(fields: [ownerId], references: [id])
+  seatId     String   @db.Uuid
+  seat       Seat     @relation(fields: [seatId], references: [id])
+  showId     String   @db.Uuid
+  show       Show     @relation(fields: [showId], references: [id])
+
+  @@unique([seatId, showId])
 }
 
 model Customer {
-  id      Int      @id @default(autoincrement())
+  id      String   @id @default(uuid()) @db.Uuid
   name    String
   address String
-  tickets Ticket[]
   Rating  Rating[]
+  tickets Ticket[]
 }
 
 model Movie {
-  id          Int      @id @default(autoincrement())
-  name        String
+  id          String   @id @default(uuid()) @db.Uuid
+  name        String   @unique
   description String
-  duration    Float
+  duration    DateTime
   age         Int
   rating      Rating[]
   show        Show[]
 }
 
 model Rating {
+  id         String   @id @default(uuid()) @db.Uuid
   stars      Float
   review     String
+  customerId String   @db.Uuid
   customer   Customer @relation(fields: [customerId], references: [id])
+  movieId    String   @db.Uuid
   movie      Movie    @relation(fields: [movieId], references: [id])
-  customerId Int
-  movieId    Int
 
-  @@id([customerId, movieId])
+  @@unique([customerId, movieId])
 }
 
 model Show {
-  date      DateTime
-  time      DateTime
-  theater   Theater  @relation(fields: [theaterId], references: [id])
+  id        String   @id @default(uuid()) @db.Uuid
+  theaterId String   @db.Uuid
+  movieId   String   @db.Uuid
+  start     DateTime
+  end       DateTime
   movie     Movie    @relation(fields: [movieId], references: [id])
-  theaterId Int
-  movieId   Int
+  theater   Theater  @relation(fields: [theaterId], references: [id])
   tickets   Ticket[]
 
-  @@id([theaterId, movieId])
+  // CREATE EXTENSION btree_gist;
+  // ALTER TABLE "Show" ADD EXCLUDE USING GIST ("theaterId" WITH =, tsrange("start", "end", '[)') WITH &&);
 }
 
 model Theater {
-  id             Int    @id @default(autoincrement())
-  name           String
-  features       TheaterFeature[]
-  shows          Show[]
-  seats          Seat[]
+  id       String           @id @default(uuid()) @db.Uuid
+  name     String  @unique
+  seats    Seat[]
+  shows    Show[]
+  features TheaterFeature[] @relation("TheaterToTheaterFeature")
 }
 
 model Seat {
-  id        Int @id @default(autoincrement())
+  id        String @id @default(uuid()) @db.Uuid
   number    Int
   row       Int
-  type      SeatType
+  type      SeatType @default(NORMAL)
+  theaterId String   @db.Uuid
+  theater   Theater  @relation(fields: [theaterId], references: [id], onDelete: Cascade)
+  tickets   Ticket[]
 
-  theater   Theater @relation(fields: [theaterId], references: [id], onDelete: Cascade)
-  theaterId Int
-
-  tickets Ticket[]
-
-  @@unique([id, theaterId])
+  @@unique([number, theaterId])
 }
 
 model TheaterFeature {
-  name String @id
-  
-  theaters Theater[]
+  id       String @id @default(uuid()) @db.Uuid
+  name     String    @unique
+  theaters Theater[] @relation("TheaterToTheaterFeature")
 }
 
 enum SeatType {
