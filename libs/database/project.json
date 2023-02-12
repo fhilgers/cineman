@@ -66,6 +66,18 @@
       "options": {
         "schema": "libs/database/prisma/schema.prisma"
       }
+    },
+    "prisma-reset": {
+      "executor": "@nx-tools/nx-prisma:reset",
+      "options": {
+        "schema": "libs/database/prisma/schema.prisma"
+      }
+    },
+    "prisma-resolve": {
+      "executor": "@nx-tools/nx-prisma:resolve",
+      "options": {
+        "schema": "libs/database/prisma/schema.prisma"
+      }
     }
   },
   "tags": []
