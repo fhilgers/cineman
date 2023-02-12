@@ -1,35 +1,44 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { TheaterService } from './theater.service';
-
+import { CreateTheaterDto } from './dto/create-theater.dto';
+import { UpdateTheaterDto } from './dto/update-theater.dto';
 import { Theater } from '@prisma/client';
-import { CreateTheaterDto } from '@cineman/database';
+import { ITheaterGateway } from './gateway/gateway';
 
-@Controller('theater')
-export class TheaterController {
-  constructor(
-      private readonly theaterService: TheaterService,
-  ) {}
+@Controller('theaters')
+export class TheaterController implements ITheaterGateway {
+  constructor(private readonly TheaterService: TheaterService) {}
 
-  @Get(':id')
-  async getTheater(@Param('id') id: string): Promise<Theater> {
-    return this.theaterService.theater({ id: Number(id) });
-  }
-
-  @Delete(':id')
-  async deleteTheater(@Param('id') id: string): Promise<Theater> {
-    return this.theaterService.deleteTheater({ id: Number(id) });
+  @Post()
+  create(@Body() createTheaterDto: CreateTheaterDto): Promise<Theater> {
+    return this.TheaterService.create(createTheaterDto);
   }
 
   @Get()
-  async getTheaters(): Promise<Theater[]> {
-    return this.theaterService.theaters({});;
+  findAll() : Promise<Theater[]> {
+    return this.TheaterService.findAll({});
   }
 
-  @Post()
-  async createTheater(
-    @Body() theaterData: CreateTheaterDto
-  ): Promise<Theater> {
-    return this.theaterService.createTheater(theaterData.toPrisma());
+  @Get(':id')
+  findOne(@Param('id') id: string) : Promise<Theater> {
+    return this.TheaterService.findOne({ id });
   }
 
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateTheaterDto: UpdateTheaterDto) : Promise<Theater> {
+    return this.TheaterService.update({where : { id }, data: updateTheaterDto});
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) : Promise<Theater> {
+    return this.TheaterService.remove({ id });
+  }
 }

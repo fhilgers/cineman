@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
-import { PrismaService } from '../prisma/prisma.service';
-import { TheaterController } from './theater.controller';
 import { TheaterService } from './theater.service';
+import { TheaterController } from './theater.controller';
+import { TheaterExistsRule, UniqueTheaterNameRule } from './theater.validator';
+import { PrismaModule } from '../prisma/prisma.module';
 
 @Module({
-  imports: [],
+  imports: [PrismaModule],
   controllers: [TheaterController],
-  providers: [PrismaService, TheaterService],
+  providers: [TheaterService, TheaterExistsRule, UniqueTheaterNameRule],
+  exports: [TheaterExistsRule]
 })
-export class TheaterModule {
-
-}
+export class TheaterModule {}
