@@ -71,7 +71,11 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/frontend/**/*.ts", "apps/frontend/**/*.html"]
+        "lintFilePatterns": [
+          "apps/frontend/**/*.ts",
+          "apps/frontend/**/*.html"
+        ],
+        "quiet": true
       }
     },
     "test": {
