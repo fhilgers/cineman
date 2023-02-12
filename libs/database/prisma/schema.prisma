@@ -31,21 +31,22 @@ model Customer {
 model Movie {
   id          String   @id @default(uuid()) @db.Uuid
   name        String   @unique
-  description String
+  description String   @default("")
   duration    DateTime
-  age         Int
+  age         Int      @default(0)
   rating      Rating[]
   show        Show[]
 }
 
 model Rating {
   id         String   @id @default(uuid()) @db.Uuid
+  // TODO min / max
   stars      Float
   review     String
   customerId String   @db.Uuid
   customer   Customer @relation(fields: [customerId], references: [id])
   movieId    String   @db.Uuid
-  movie      Movie    @relation(fields: [movieId], references: [id])
+  movie      Movie    @relation(fields: [movieId], references: [id], onDelete: Cascade)
 
   @@unique([customerId, movieId])
 }
@@ -56,7 +57,7 @@ model Show {
   movieId   String   @db.Uuid
   start     DateTime
   end       DateTime
-  movie     Movie    @relation(fields: [movieId], references: [id])
+  movie     Movie    @relation(fields: [movieId], references: [id], onDelete: Cascade)
   theater   Theater  @relation(fields: [theaterId], references: [id])
   tickets   Ticket[]
 
@@ -69,7 +70,7 @@ model Theater {
   name     String  @unique
   seats    Seat[]
   shows    Show[]
-  features TheaterFeature[] @relation("TheaterToTheaterFeature")
+  features Feature[]
 }
 
 model Seat {
@@ -84,10 +85,10 @@ model Seat {
   @@unique([number, theaterId])
 }
 
-model TheaterFeature {
+model Feature {
   id       String @id @default(uuid()) @db.Uuid
   name     String    @unique
-  theaters Theater[] @relation("TheaterToTheaterFeature")
+  theaters Theater[]
 }
 
 enum SeatType {

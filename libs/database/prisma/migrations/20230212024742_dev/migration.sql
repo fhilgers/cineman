@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Movie" ALTER COLUMN "description" SET DEFAULT '',
+ALTER COLUMN "age" SET DEFAULT 0;
