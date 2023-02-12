@@ -23,22 +23,28 @@ export class CustomerController implements ICustomerGateway {
   }
 
   @Get()
-  findAll() : Promise<Customer[]> {
+  findAll(): Promise<Customer[]> {
     return this.CustomerService.findAll({});
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) : Promise<Customer> {
+  findOne(@Param('id') id: string): Promise<Customer> {
     return this.CustomerService.findOne({ id });
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCustomerDto: UpdateCustomerDto) : Promise<Customer> {
-    return this.CustomerService.update({where : { id }, data: updateCustomerDto});
+  update(
+    @Param('id') id: string,
+    @Body() updateCustomerDto: UpdateCustomerDto
+  ): Promise<Customer> {
+    return this.CustomerService.update({
+      where: { id },
+      data: updateCustomerDto,
+    });
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) : Promise<Customer> {
+  remove(@Param('id') id: string): Promise<Customer> {
     return this.CustomerService.remove({ id });
   }
 }

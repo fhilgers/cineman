@@ -6,9 +6,7 @@ import { PrismaService } from '../prisma/prisma.service';
 export class UserService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  create(
-    data: Prisma.UserCreateInput
-  ) {
+  create(data: Prisma.UserCreateInput) {
     return this.prismaService.user.create({
       data,
     });
@@ -31,9 +29,7 @@ export class UserService {
     });
   }
 
-  findOne(
-    UserWhereUniqueInput: Prisma.UserWhereUniqueInput
-  ) {
+  findOne(UserWhereUniqueInput: Prisma.UserWhereUniqueInput) {
     return this.prismaService.user.findUniqueOrThrow({
       where: UserWhereUniqueInput,
     });
@@ -50,9 +46,7 @@ export class UserService {
     });
   }
 
-  remove(
-    where: Prisma.UserWhereUniqueInput
-  ) {
+  remove(where: Prisma.UserWhereUniqueInput) {
     return this.prismaService.user.delete({
       where,
     });

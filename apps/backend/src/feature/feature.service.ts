@@ -6,9 +6,7 @@ import { PrismaService } from '../prisma/prisma.service';
 export class FeatureService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  create(
-    data: Prisma.FeatureCreateInput
-  ) {
+  create(data: Prisma.FeatureCreateInput) {
     return this.prismaService.feature.create({
       data,
     });
@@ -31,9 +29,7 @@ export class FeatureService {
     });
   }
 
-  findOne(
-    FeatureWhereUniqueInput: Prisma.FeatureWhereUniqueInput
-  ) {
+  findOne(FeatureWhereUniqueInput: Prisma.FeatureWhereUniqueInput) {
     return this.prismaService.feature.findUniqueOrThrow({
       where: FeatureWhereUniqueInput,
     });
@@ -50,9 +46,7 @@ export class FeatureService {
     });
   }
 
-  remove(
-    where: Prisma.FeatureWhereUniqueInput
-  ) {
+  remove(where: Prisma.FeatureWhereUniqueInput) {
     return this.prismaService.feature.delete({
       where,
     });

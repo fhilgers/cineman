@@ -23,22 +23,25 @@ export class ShowController implements IShowGateway {
   }
 
   @Get()
-  findAll() : Promise<Show[]> {
+  findAll(): Promise<Show[]> {
     return this.ShowService.findAll({});
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) : Promise<Show> {
+  findOne(@Param('id') id: string): Promise<Show> {
     return this.ShowService.findOne({ id });
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateShowDto: UpdateShowDto) : Promise<Show> {
-    return this.ShowService.update({where : { id }, data: updateShowDto});
+  update(
+    @Param('id') id: string,
+    @Body() updateShowDto: UpdateShowDto
+  ): Promise<Show> {
+    return this.ShowService.update({ where: { id }, data: updateShowDto });
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) : Promise<Show> {
+  remove(@Param('id') id: string): Promise<Show> {
     return this.ShowService.remove({ id });
   }
 }

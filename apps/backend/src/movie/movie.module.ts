@@ -8,6 +8,6 @@ import { MovieExistsRule, UniqueMovieNameRule } from './movie.validator';
   imports: [PrismaModule],
   controllers: [MovieController],
   providers: [MovieService, MovieExistsRule, UniqueMovieNameRule],
-  exports: [MovieExistsRule]
+  exports: [MovieExistsRule],
 })
 export class MovieModule {}

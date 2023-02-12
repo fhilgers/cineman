@@ -8,6 +8,6 @@ import { PrismaModule } from '../prisma/prisma.module';
   imports: [PrismaModule],
   controllers: [TheaterController],
   providers: [TheaterService, TheaterExistsRule, UniqueTheaterNameRule],
-  exports: [TheaterExistsRule]
+  exports: [TheaterExistsRule],
 })
 export class TheaterModule {}

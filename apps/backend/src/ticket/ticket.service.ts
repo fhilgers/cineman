@@ -6,9 +6,7 @@ import { PrismaService } from '../prisma/prisma.service';
 export class TicketService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  create(
-    data: Prisma.TicketUncheckedCreateInput
-  ) {
+  create(data: Prisma.TicketUncheckedCreateInput) {
     return this.prismaService.ticket.create({
       data,
     });
@@ -31,9 +29,7 @@ export class TicketService {
     });
   }
 
-  findOne(
-    TicketWhereUniqueInput: Prisma.TicketWhereUniqueInput
-  ) {
+  findOne(TicketWhereUniqueInput: Prisma.TicketWhereUniqueInput) {
     return this.prismaService.ticket.findUniqueOrThrow({
       where: TicketWhereUniqueInput,
     });
@@ -50,9 +46,7 @@ export class TicketService {
     });
   }
 
-  remove(
-    where: Prisma.TicketWhereUniqueInput
-  ) {
+  remove(where: Prisma.TicketWhereUniqueInput) {
     return this.prismaService.ticket.delete({
       where,
     });

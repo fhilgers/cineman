@@ -23,22 +23,25 @@ export class RatingController implements IRatingGateway {
   }
 
   @Get()
-  findAll() : Promise<Rating[]> {
+  findAll(): Promise<Rating[]> {
     return this.RatingService.findAll({});
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) : Promise<Rating> {
+  findOne(@Param('id') id: string): Promise<Rating> {
     return this.RatingService.findOne({ id });
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateRatingDto: UpdateRatingDto) : Promise<Rating> {
-    return this.RatingService.update({where : { id }, data: updateRatingDto});
+  update(
+    @Param('id') id: string,
+    @Body() updateRatingDto: UpdateRatingDto
+  ): Promise<Rating> {
+    return this.RatingService.update({ where: { id }, data: updateRatingDto });
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) : Promise<Rating> {
+  remove(@Param('id') id: string): Promise<Rating> {
     return this.RatingService.remove({ id });
   }
 }

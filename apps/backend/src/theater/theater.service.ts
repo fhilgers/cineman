@@ -6,9 +6,7 @@ import { PrismaService } from '../prisma/prisma.service';
 export class TheaterService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  create(
-    data: Prisma.TheaterCreateInput
-  ) {
+  create(data: Prisma.TheaterCreateInput) {
     return this.prismaService.theater.create({
       data,
     });
@@ -31,9 +29,7 @@ export class TheaterService {
     });
   }
 
-  findOne(
-    TheaterWhereUniqueInput: Prisma.TheaterWhereUniqueInput
-  ) {
+  findOne(TheaterWhereUniqueInput: Prisma.TheaterWhereUniqueInput) {
     return this.prismaService.theater.findUniqueOrThrow({
       where: TheaterWhereUniqueInput,
     });
@@ -50,9 +46,7 @@ export class TheaterService {
     });
   }
 
-  remove(
-    where: Prisma.TheaterWhereUniqueInput
-  ) {
+  remove(where: Prisma.TheaterWhereUniqueInput) {
     return this.prismaService.theater.delete({
       where,
     });

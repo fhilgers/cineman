@@ -27,25 +27,28 @@ export class MovieController implements IMovieGateway {
 
   @Public()
   @Get()
-  findAll() : Promise<Movie[]> {
+  findAll(): Promise<Movie[]> {
     return this.movieService.findAll({});
   }
 
   @Public()
   @Get(':id')
-  findOne(@Param('id') id: string) : Promise<Movie> {
+  findOne(@Param('id') id: string): Promise<Movie> {
     return this.movieService.findOne({ id });
   }
 
   @Roles(Role.ADMIN)
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateMovieDto: UpdateMovieDto) : Promise<Movie> {
-    return this.movieService.update({where : { id }, data: updateMovieDto});
+  update(
+    @Param('id') id: string,
+    @Body() updateMovieDto: UpdateMovieDto
+  ): Promise<Movie> {
+    return this.movieService.update({ where: { id }, data: updateMovieDto });
   }
 
   @Roles(Role.ADMIN)
   @Delete(':id')
-  remove(@Param('id') id: string) : Promise<Movie> {
+  remove(@Param('id') id: string): Promise<Movie> {
     return this.movieService.remove({ id });
   }
 }

@@ -10,6 +10,6 @@ import { NotOverlappingForTheaterRule, ShowExistsRule } from './show.validator';
   imports: [PrismaModule, TheaterModule, MovieModule],
   controllers: [ShowController],
   providers: [ShowService, NotOverlappingForTheaterRule, ShowExistsRule],
-  exports: [ShowExistsRule]
+  exports: [ShowExistsRule],
 })
 export class ShowModule {}

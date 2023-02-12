@@ -8,7 +8,11 @@ import { HttpAdapterHost, NestFactory } from '@nestjs/core';
 import { useContainer } from 'class-validator';
 
 import { AppModule } from './app/app.module';
-import { PrismaClientExceptionFilter, PrismaClientUnknownExceptionFilter, PrismaClientValidationExceptionFilter } from './prisma-client-exception.filter';
+import {
+  PrismaClientExceptionFilter,
+  PrismaClientUnknownExceptionFilter,
+  PrismaClientValidationExceptionFilter,
+} from './prisma-client-exception.filter';
 import { PrismaService } from './prisma/prisma.service';
 
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
@@ -31,12 +35,22 @@ async function bootstrap() {
   app.setGlobalPrefix(globalPrefix);
 
   const { httpAdapter } = app.get(HttpAdapterHost);
-  app.useGlobalFilters(new PrismaClientExceptionFilter(httpAdapter), new PrismaClientUnknownExceptionFilter(httpAdapter), new PrismaClientValidationExceptionFilter(httpAdapter))
+  app.useGlobalFilters(
+    new PrismaClientExceptionFilter(httpAdapter),
+    new PrismaClientUnknownExceptionFilter(httpAdapter),
+    new PrismaClientValidationExceptionFilter(httpAdapter)
+  );
 
-  app.useGlobalPipes(new ValidationPipe({whitelist: true, enableDebugMessages: true, transform: true}));
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      enableDebugMessages: true,
+      transform: true,
+    })
+  );
   app.enableCors();
   const port = process.env.PORT || 3333;
-  
+
   const prismaService = app.get(PrismaService);
   await prismaService.enableShutdownHooks(app);
 
@@ -44,9 +58,7 @@ async function bootstrap() {
   Logger.log(
     `🚀 Application is running on: http://localhost:${port}/${globalPrefix}`
   );
-  Logger.log(
-    `Database is running on: ${process.env.DATABASE_URL}`
-  )
+  Logger.log(`Database is running on: ${process.env.DATABASE_URL}`);
 }
 
 bootstrap();

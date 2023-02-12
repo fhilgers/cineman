@@ -23,14 +23,17 @@ export class AuthService {
 
   async register(body) {
     const { username, hash } = body;
-    return this.userService.create({ username, hash, roles: [Role.USER]});
+    return this.userService.create({ username, hash, roles: [Role.USER] });
   }
 
   async login(user: User) {
-    const payload = { username: user.username, sub: user.id, roles: user.roles };
+    const payload = {
+      username: user.username,
+      sub: user.id,
+      roles: user.roles,
+    };
     return {
       access_token: this.jwtService.sign(payload),
-    }
+    };
   }
 }
-

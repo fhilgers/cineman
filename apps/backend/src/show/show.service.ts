@@ -6,9 +6,7 @@ import { PrismaService } from '../prisma/prisma.service';
 export class ShowService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  create(
-    data: Prisma.ShowUncheckedCreateInput
-  ) {
+  create(data: Prisma.ShowUncheckedCreateInput) {
     return this.prismaService.show.create({
       data,
     });
@@ -31,9 +29,7 @@ export class ShowService {
     });
   }
 
-  findOne(
-    ShowWhereUniqueInput: Prisma.ShowWhereUniqueInput
-  ) {
+  findOne(ShowWhereUniqueInput: Prisma.ShowWhereUniqueInput) {
     return this.prismaService.show.findUniqueOrThrow({
       where: ShowWhereUniqueInput,
     });
@@ -50,9 +46,7 @@ export class ShowService {
     });
   }
 
-  remove(
-    where: Prisma.ShowWhereUniqueInput
-  ) {
+  remove(where: Prisma.ShowWhereUniqueInput) {
     return this.prismaService.show.delete({
       where,
     });

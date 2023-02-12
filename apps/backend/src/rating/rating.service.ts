@@ -6,10 +6,7 @@ import { PrismaService } from '../prisma/prisma.service';
 export class RatingService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  create(
-    data: Prisma.RatingUncheckedCreateInput
-  ) {
-
+  create(data: Prisma.RatingUncheckedCreateInput) {
     return this.prismaService.rating.create({
       data,
     });
@@ -32,9 +29,7 @@ export class RatingService {
     });
   }
 
-  findOne(
-    RatingWhereUniqueInput: Prisma.RatingWhereUniqueInput
-  ) {
+  findOne(RatingWhereUniqueInput: Prisma.RatingWhereUniqueInput) {
     return this.prismaService.rating.findUniqueOrThrow({
       where: RatingWhereUniqueInput,
     });
@@ -51,9 +46,7 @@ export class RatingService {
     });
   }
 
-  remove(
-    where: Prisma.RatingWhereUniqueInput
-  ) {
+  remove(where: Prisma.RatingWhereUniqueInput) {
     return this.prismaService.rating.delete({
       where,
     });

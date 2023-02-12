@@ -6,9 +6,7 @@ import { PrismaService } from '../prisma/prisma.service';
 export class CustomerService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  create(
-    data: Prisma.CustomerUncheckedCreateInput
-  ) {
+  create(data: Prisma.CustomerUncheckedCreateInput) {
     return this.prismaService.customer.create({
       data,
     });
@@ -31,9 +29,7 @@ export class CustomerService {
     });
   }
 
-  findOne(
-    CustomerWhereUniqueInput: Prisma.CustomerWhereUniqueInput
-  ) {
+  findOne(CustomerWhereUniqueInput: Prisma.CustomerWhereUniqueInput) {
     return this.prismaService.customer.findUniqueOrThrow({
       where: CustomerWhereUniqueInput,
     });
@@ -50,9 +46,7 @@ export class CustomerService {
     });
   }
 
-  remove(
-    where: Prisma.CustomerWhereUniqueInput
-  ) {
+  remove(where: Prisma.CustomerWhereUniqueInput) {
     return this.prismaService.customer.delete({
       where,
     });

@@ -23,22 +23,25 @@ export class TicketController implements ITicketGateway {
   }
 
   @Get()
-  findAll() : Promise<Ticket[]> {
+  findAll(): Promise<Ticket[]> {
     return this.TicketService.findAll({});
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) : Promise<Ticket> {
+  findOne(@Param('id') id: string): Promise<Ticket> {
     return this.TicketService.findOne({ id });
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateTicketDto: UpdateTicketDto) : Promise<Ticket> {
-    return this.TicketService.update({where : { id }, data: updateTicketDto});
+  update(
+    @Param('id') id: string,
+    @Body() updateTicketDto: UpdateTicketDto
+  ): Promise<Ticket> {
+    return this.TicketService.update({ where: { id }, data: updateTicketDto });
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) : Promise<Ticket> {
+  remove(@Param('id') id: string): Promise<Ticket> {
     return this.TicketService.remove({ id });
   }
 }

@@ -844,5 +844,5 @@ nx affected:e2e</pre>
   encapsulation: ViewEncapsulation.None,
 })
 export class NxWelcomeComponent {
-    title: string = process.env['NX_API_URL'] ?? 'API URL NOT DEFINED';
+  title: string = process.env['NX_API_URL'] ?? 'API URL NOT DEFINED';
 }

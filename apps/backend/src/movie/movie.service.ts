@@ -6,9 +6,7 @@ import { PrismaService } from '../prisma/prisma.service';
 export class MovieService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  create(
-    data: Prisma.MovieCreateInput
-  ) {
+  create(data: Prisma.MovieCreateInput) {
     return this.prismaService.movie.create({
       data,
     });
@@ -31,9 +29,7 @@ export class MovieService {
     });
   }
 
-  findOne(
-    movieWhereUniqueInput: Prisma.MovieWhereUniqueInput
-  ) {
+  findOne(movieWhereUniqueInput: Prisma.MovieWhereUniqueInput) {
     return this.prismaService.movie.findUniqueOrThrow({
       where: movieWhereUniqueInput,
     });
@@ -50,9 +46,7 @@ export class MovieService {
     });
   }
 
-  remove(
-    where: Prisma.MovieWhereUniqueInput
-  ) {
+  remove(where: Prisma.MovieWhereUniqueInput) {
     return this.prismaService.movie.delete({
       where,
     });

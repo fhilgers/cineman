@@ -1,10 +1,9 @@
-import { IsDateString, IsUUID } from "class-validator";
-import { IsMovie } from "../../movie/movie.validator";
-import { IsTheater } from "../../theater/theater.validator";
-import { IsNotOverlappingForTheater } from "../show.validator";
+import { IsDateString, IsUUID } from 'class-validator';
+import { IsMovie } from '../../movie/movie.validator';
+import { IsTheater } from '../../theater/theater.validator';
+import { IsNotOverlappingForTheater } from '../show.validator';
 
 export class CreateShowDto {
-
   @IsUUID()
   @IsTheater()
   theaterId: string;

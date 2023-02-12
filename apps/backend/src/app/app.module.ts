@@ -18,7 +18,19 @@ import { RolesGuard } from '../roles.guard';
 import { UserModule } from '../user/user.module';
 
 @Module({
-  imports: [PrismaModule, TheaterModule, MovieModule, CustomerModule, RatingModule, ShowModule, TicketModule, SeatModule, FeatureModule, UserModule , AuthModule],
+  imports: [
+    PrismaModule,
+    TheaterModule,
+    MovieModule,
+    CustomerModule,
+    RatingModule,
+    ShowModule,
+    TicketModule,
+    SeatModule,
+    FeatureModule,
+    UserModule,
+    AuthModule,
+  ],
   controllers: [AppController],
   providers: [
     AppService,
@@ -29,7 +41,7 @@ import { UserModule } from '../user/user.module';
     {
       provide: APP_GUARD,
       useClass: RolesGuard,
-    }
+    },
   ],
 })
 export class AppModule {}

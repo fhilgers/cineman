@@ -8,6 +8,6 @@ import { CustomerExistsRule } from './customer.validator';
   imports: [PrismaModule],
   controllers: [CustomerController],
   providers: [CustomerService, CustomerExistsRule],
-  exports: [CustomerExistsRule]
+  exports: [CustomerExistsRule],
 })
 export class CustomerModule {}

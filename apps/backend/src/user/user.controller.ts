@@ -26,25 +26,28 @@ export class UserController implements IUserGateway {
 
   @Roles(Role.ADMIN)
   @Get()
-  findAll() : Promise<User[]> {
+  findAll(): Promise<User[]> {
     return this.UserService.findAll({});
   }
 
   @Roles(Role.ADMIN)
   @Get(':id')
-  findOne(@Param('id') id: string) : Promise<User> {
+  findOne(@Param('id') id: string): Promise<User> {
     return this.UserService.findOne({ id });
   }
 
   @Roles(Role.ADMIN)
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) : Promise<User> {
-    return this.UserService.update({where : { id }, data: updateUserDto});
+  update(
+    @Param('id') id: string,
+    @Body() updateUserDto: UpdateUserDto
+  ): Promise<User> {
+    return this.UserService.update({ where: { id }, data: updateUserDto });
   }
 
   @Roles(Role.ADMIN)
   @Delete(':id')
-  remove(@Param('id') id: string) : Promise<User> {
+  remove(@Param('id') id: string): Promise<User> {
     return this.UserService.remove({ id });
   }
 }

@@ -1,11 +1,16 @@
-import { SeatType } from "@prisma/client";
-import { IsEnum, IsInt, IsOptional, IsUUID, Min, Validate } from "class-validator";
-import { IsTheater } from "../../theater/theater.validator";
-import { IsSeatUniqueForTheater } from "../seat.validator";
-
+import { SeatType } from '@prisma/client';
+import {
+  IsEnum,
+  IsInt,
+  IsOptional,
+  IsUUID,
+  Min,
+  Validate,
+} from 'class-validator';
+import { IsTheater } from '../../theater/theater.validator';
+import { IsSeatUniqueForTheater } from '../seat.validator';
 
 export class CreateSeatDto {
-
   @Min(1)
   @IsInt()
   @IsSeatUniqueForTheater('theaterId')

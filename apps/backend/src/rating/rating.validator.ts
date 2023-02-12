@@ -1,29 +1,41 @@
 import { Injectable } from '@nestjs/common';
-import { registerDecorator, ValidationArguments, ValidationOptions, ValidatorConstraint, ValidatorConstraintInterface } from 'class-validator';
+import {
+  registerDecorator,
+  ValidationArguments,
+  ValidationOptions,
+  ValidatorConstraint,
+  ValidatorConstraintInterface,
+} from 'class-validator';
 import { RatingService } from './rating.service';
 
-export function IsMovieRatingUniqueForCustomer(customerIdProperty: string, validationOptions?: ValidationOptions) {
-  return function(object: any, propertyName: string) {
+export function IsMovieRatingUniqueForCustomer(
+  customerIdProperty: string,
+  validationOptions?: ValidationOptions
+) {
+  return function (object: any, propertyName: string) {
     registerDecorator({
       target: object.constructor,
       propertyName: propertyName,
       options: validationOptions,
       constraints: [customerIdProperty],
       validator: UniqueMovieRatingForCustomerRule,
-    })
-  }
+    });
+  };
 }
 
 @ValidatorConstraint({ name: 'UniqueMovieRatingForCustomer', async: true })
 @Injectable()
-export class UniqueMovieRatingForCustomerRule implements ValidatorConstraintInterface {
+export class UniqueMovieRatingForCustomerRule
+  implements ValidatorConstraintInterface
+{
   constructor(private readonly ratingService: RatingService) {}
 
   async validate(value: any, args: ValidationArguments) {
     const [customerIdProperty] = args.constraints;
     const customerId = (args.object as any)[customerIdProperty];
 
-    return this.ratingService.findOne({ customerId_movieId: { movieId: value, customerId }})
+    return this.ratingService
+      .findOne({ customerId_movieId: { movieId: value, customerId } })
       .then(() => false)
       .catch(() => true);
   }
@@ -35,4 +47,3 @@ export class UniqueMovieRatingForCustomerRule implements ValidatorConstraintInte
     return `Rating for movie ${args.value} already exists from customer with id ${customerId}`;
   }
 }
-

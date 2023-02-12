@@ -23,22 +23,28 @@ export class FeatureController implements IFeatureGateway {
   }
 
   @Get()
-  findAll() : Promise<Feature[]> {
+  findAll(): Promise<Feature[]> {
     return this.FeatureService.findAll({});
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) : Promise<Feature> {
+  findOne(@Param('id') id: string): Promise<Feature> {
     return this.FeatureService.findOne({ id });
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateFeatureDto: UpdateFeatureDto) : Promise<Feature> {
-    return this.FeatureService.update({where : { id }, data: updateFeatureDto});
+  update(
+    @Param('id') id: string,
+    @Body() updateFeatureDto: UpdateFeatureDto
+  ): Promise<Feature> {
+    return this.FeatureService.update({
+      where: { id },
+      data: updateFeatureDto,
+    });
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) : Promise<Feature> {
+  remove(@Param('id') id: string): Promise<Feature> {
     return this.FeatureService.remove({ id });
   }
 }

@@ -9,6 +9,6 @@ import { SeatExistsRule, UniqueNumberForTheaterRule } from './seat.validator';
   imports: [PrismaModule, TheaterModule],
   controllers: [SeatController],
   providers: [SeatService, UniqueNumberForTheaterRule, SeatExistsRule],
-  exports: [SeatExistsRule]
+  exports: [SeatExistsRule],
 })
 export class SeatModule {}

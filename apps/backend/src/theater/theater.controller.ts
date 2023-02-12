@@ -23,22 +23,28 @@ export class TheaterController implements ITheaterGateway {
   }
 
   @Get()
-  findAll() : Promise<Theater[]> {
+  findAll(): Promise<Theater[]> {
     return this.TheaterService.findAll({});
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) : Promise<Theater> {
+  findOne(@Param('id') id: string): Promise<Theater> {
     return this.TheaterService.findOne({ id });
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateTheaterDto: UpdateTheaterDto) : Promise<Theater> {
-    return this.TheaterService.update({where : { id }, data: updateTheaterDto});
+  update(
+    @Param('id') id: string,
+    @Body() updateTheaterDto: UpdateTheaterDto
+  ): Promise<Theater> {
+    return this.TheaterService.update({
+      where: { id },
+      data: updateTheaterDto,
+    });
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) : Promise<Theater> {
+  remove(@Param('id') id: string): Promise<Theater> {
     return this.TheaterService.remove({ id });
   }
 }

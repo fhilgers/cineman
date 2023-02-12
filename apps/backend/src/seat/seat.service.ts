@@ -6,9 +6,7 @@ import { PrismaService } from '../prisma/prisma.service';
 export class SeatService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  create(
-    data: Prisma.SeatUncheckedCreateInput
-  ) {
+  create(data: Prisma.SeatUncheckedCreateInput) {
     return this.prismaService.seat.create({
       data,
     });
@@ -31,9 +29,7 @@ export class SeatService {
     });
   }
 
-  findOne(
-    SeatWhereUniqueInput: Prisma.SeatWhereUniqueInput
-  ) {
+  findOne(SeatWhereUniqueInput: Prisma.SeatWhereUniqueInput) {
     return this.prismaService.seat.findUniqueOrThrow({
       where: SeatWhereUniqueInput,
     });
@@ -50,9 +46,7 @@ export class SeatService {
     });
   }
 
-  remove(
-    where: Prisma.SeatWhereUniqueInput
-  ) {
+  remove(where: Prisma.SeatWhereUniqueInput) {
     return this.prismaService.seat.delete({
       where,
     });

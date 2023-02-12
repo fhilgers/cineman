@@ -19,27 +19,30 @@ export class SeatController implements ISeatGateway {
 
   @Post()
   async create(@Body() createSeatDto: CreateSeatDto): Promise<Seat> {
-    console.log(createSeatDto)
+    console.log(createSeatDto);
     return this.SeatService.create(createSeatDto);
   }
 
   @Get()
-  findAll() : Promise<Seat[]> {
+  findAll(): Promise<Seat[]> {
     return this.SeatService.findAll({});
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) : Promise<Seat> {
+  findOne(@Param('id') id: string): Promise<Seat> {
     return this.SeatService.findOne({ id });
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateSeatDto: UpdateSeatDto) : Promise<Seat> {
-    return this.SeatService.update({where : { id }, data: updateSeatDto});
+  update(
+    @Param('id') id: string,
+    @Body() updateSeatDto: UpdateSeatDto
+  ): Promise<Seat> {
+    return this.SeatService.update({ where: { id }, data: updateSeatDto });
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) : Promise<Seat> {
+  remove(@Param('id') id: string): Promise<Seat> {
     return this.SeatService.remove({ id });
   }
 }
