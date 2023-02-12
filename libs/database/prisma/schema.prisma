@@ -11,11 +11,11 @@ model Ticket {
   id         String   @id @default(uuid()) @db.Uuid
   price      Int
   ownerId    String   @db.Uuid
-  owner      Customer @relation(fields: [ownerId], references: [id])
+  owner      Customer @relation(fields: [ownerId], references: [id], onDelete: Cascade)
   seatId     String   @db.Uuid
-  seat       Seat     @relation(fields: [seatId], references: [id])
+  seat       Seat     @relation(fields: [seatId], references: [id], onDelete: Cascade)
   showId     String   @db.Uuid
-  show       Show     @relation(fields: [showId], references: [id])
+  show       Show     @relation(fields: [showId], references: [id], onDelete: Cascade)
 
   @@unique([seatId, showId])
 }
@@ -26,6 +26,8 @@ model Customer {
   address String
   Rating  Rating[]
   tickets Ticket[]
+  userId  String   @unique @db.Uuid 
+  user    User     @relation(fields: [userId], references: [id])
 }
 
 model Movie {
@@ -44,7 +46,7 @@ model Rating {
   stars      Float
   review     String
   customerId String   @db.Uuid
-  customer   Customer @relation(fields: [customerId], references: [id])
+  customer   Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
   movieId    String   @db.Uuid
   movie      Movie    @relation(fields: [movieId], references: [id], onDelete: Cascade)
 
@@ -58,7 +60,7 @@ model Show {
   start     DateTime
   end       DateTime
   movie     Movie    @relation(fields: [movieId], references: [id], onDelete: Cascade)
-  theater   Theater  @relation(fields: [theaterId], references: [id])
+  theater   Theater  @relation(fields: [theaterId], references: [id], onDelete: Cascade)
   tickets   Ticket[]
 
   // CREATE EXTENSION btree_gist;
@@ -95,4 +97,17 @@ enum SeatType {
   NORMAL
   DELUXE
   REMOVABLE
+}
+
+model User {
+  id         String @id @default(uuid()) @db.Uuid
+  username   String @unique
+  hash       String
+  customer   Customer?
+  roles      Role[] @default([USER])
+}
+
+enum Role {
+  USER
+  ADMIN
 }

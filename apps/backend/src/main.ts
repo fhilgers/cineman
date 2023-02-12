@@ -11,8 +11,21 @@ import { AppModule } from './app/app.module';
 import { PrismaClientExceptionFilter, PrismaClientUnknownExceptionFilter, PrismaClientValidationExceptionFilter } from './prisma-client-exception.filter';
 import { PrismaService } from './prisma/prisma.service';
 
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  const config = new DocumentBuilder()
+    .setTitle('Cinema Manager')
+    .setDescription('The cinema manager API')
+    .setVersion('1.0')
+    .addTag('cinema')
+    .build();
+
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, document);
+
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
   const globalPrefix = '';
   app.setGlobalPrefix(globalPrefix);

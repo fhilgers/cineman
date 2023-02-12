@@ -7,7 +7,7 @@ export class CustomerService {
   constructor(private readonly prismaService: PrismaService) {}
 
   create(
-    data: Prisma.CustomerCreateInput
+    data: Prisma.CustomerUncheckedCreateInput
   ) {
     return this.prismaService.customer.create({
       data,
@@ -41,7 +41,7 @@ export class CustomerService {
 
   update(params: {
     where: Prisma.CustomerWhereUniqueInput;
-    data: Prisma.CustomerUpdateInput;
+    data: Prisma.CustomerUncheckedUpdateInput;
   }) {
     const { where, data } = params;
     return this.prismaService.customer.update({
