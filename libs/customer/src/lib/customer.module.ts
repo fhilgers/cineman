@@ -6,7 +6,7 @@ import { CustomerExistsRule } from './customer.validator';
 
 export { CreateCustomerDto } from './dto/create-customer.dto';
 export { UpdateCustomerDto } from './dto/update-customer.dto';
-export { ICustomerGateway } from './gateway/gateway'
+export { ICustomerGateway } from './gateway/gateway';
 
 export { IsCustomer } from './customer.validator';
 

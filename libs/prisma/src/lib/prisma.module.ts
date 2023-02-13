@@ -3,7 +3,11 @@ import { PrismaService } from './prisma.service';
 
 export { PrismaService };
 
-export { PrismaClientExceptionFilter, PrismaClientUnknownExceptionFilter, PrismaClientValidationExceptionFilter } from './prisma-client-exception.filter';
+export {
+  PrismaClientExceptionFilter,
+  PrismaClientUnknownExceptionFilter,
+  PrismaClientValidationExceptionFilter,
+} from './prisma-client-exception.filter';
 
 @Module({
   providers: [PrismaService],

@@ -1,11 +1,5 @@
 import { SeatType } from '@prisma/client';
-import {
-  IsEnum,
-  IsInt,
-  IsOptional,
-  IsUUID,
-  Min,
-} from 'class-validator';
+import { IsEnum, IsInt, IsOptional, IsUUID, Min } from 'class-validator';
 import { IsTheater } from '@cineman/theater';
 import { IsSeatUniqueForTheater } from '../seat.validator';
 
