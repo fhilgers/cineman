@@ -12,8 +12,8 @@ import {
   PrismaClientExceptionFilter,
   PrismaClientUnknownExceptionFilter,
   PrismaClientValidationExceptionFilter,
-} from './prisma-client-exception.filter';
-import { PrismaService } from './prisma/prisma.service';
+} from '@cineman/prisma';
+import { PrismaService } from '@cineman/prisma';
 
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 

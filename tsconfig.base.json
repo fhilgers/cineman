@@ -15,7 +15,19 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@cineman/database": ["libs/database/src/index.ts"]
+      "@cineman/auth": ["libs/auth/src/index.ts"],
+      "@cineman/authorization": ["libs/authorization/src/index.ts"],
+      "@cineman/customer": ["libs/customer/src/index.ts"],
+      "@cineman/database": ["libs/database/src/index.ts"],
+      "@cineman/feature": ["libs/feature/src/index.ts"],
+      "@cineman/movie": ["libs/movie/src/index.ts"],
+      "@cineman/prisma": ["libs/prisma/src/index.ts"],
+      "@cineman/rating": ["libs/rating/src/index.ts"],
+      "@cineman/seat": ["libs/seat/src/index.ts"],
+      "@cineman/show": ["libs/show/src/index.ts"],
+      "@cineman/theater": ["libs/theater/src/index.ts"],
+      "@cineman/ticket": ["libs/ticket/src/index.ts"],
+      "@cineman/user": ["libs/user/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
