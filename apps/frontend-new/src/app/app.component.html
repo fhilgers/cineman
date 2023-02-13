@@ -1,0 +1,25 @@
+<!--
+-->
+<mat-grid-list cols="4" rowHeight="1:2">
+<mat-grid-tile *ngFor="let movie of movies">
+<mat-card>
+<mat-card-header>
+<mat-card-title >{{ movie.name }}</mat-card-title>
+<mat-card-subtitle>
+    <mat-chip-listbox>
+    <mat-chip color="accent" disableRipple>age {{ movie.age }}</mat-chip>
+    <mat-chip color="accent" disableRipple>duration {{ movie.duration }}</mat-chip>
+    </mat-chip-listbox>
+</mat-card-subtitle>
+</mat-card-header>
+<mat-card-content>
+<p>{{ movie.description }}</p>
+</mat-card-content>
+<mat-card-actions>
+</mat-card-actions>
+</mat-card>
+</mat-grid-tile>
+</mat-grid-list>
+
+
+<router-outlet></router-outlet>
