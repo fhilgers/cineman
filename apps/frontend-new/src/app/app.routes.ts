@@ -5,7 +5,14 @@ import {
   MovieDetailComponent,
   MovieGridComponent,
 } from '@cineman/components';
-import { ShowDetailComponent, ShowGridComponent, RatingGridComponent, TicketGridComponent, LoginComponent, PagenotfoundComponent } from '@cineman/components';
+import {
+  ShowDetailComponent,
+  ShowGridComponent,
+  RatingGridComponent,
+  TicketGridComponent,
+  LoginComponent,
+  PagenotfoundComponent,
+} from '@cineman/components';
 import {
   TheaterGridComponent,
   TheaterDetailComponent,

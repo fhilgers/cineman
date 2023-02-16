@@ -22,7 +22,7 @@ export {
   TicketService,
   ApiInterceptor,
   AuthInterceptor,
-  AuthGuard
+  AuthGuard,
 };
 
 export { MovieWithRating } from './movie.service';

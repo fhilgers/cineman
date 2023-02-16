@@ -4,7 +4,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Role, Show } from '@prisma/client';
 import { catchError, map, mergeMap, Observable, of, tap } from 'rxjs';
 
-import { LoginService, ShowService, TheaterService, MovieService} from '@cineman/services';
+import {
+  LoginService,
+  ShowService,
+  TheaterService,
+  MovieService,
+} from '@cineman/services';
 import { ShowCreateComponent } from '../show-create/show-create.component';
 
 @Component({

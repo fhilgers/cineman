@@ -13,8 +13,11 @@ import {
 } from '@angular/material/dialog';
 import { SeatType } from '@prisma/client';
 import { Observable } from 'rxjs';
-import { LoginService, TicketService,
-  TicketWithSeatAndOwnerAndShow} from '@cineman/services';
+import {
+  LoginService,
+  TicketService,
+  TicketWithSeatAndOwnerAndShow,
+} from '@cineman/services';
 
 interface TicketData {
   id: string;

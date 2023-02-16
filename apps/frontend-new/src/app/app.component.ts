@@ -62,7 +62,6 @@ export class AppComponent implements OnInit, AfterContentInit, OnDestroy {
   }
 
   ngOnInit(): void {
-
     this.loginService.isLoggedIn().subscribe((b) => (this.isLoggedIn = b));
     this.loginService.getUsername().subscribe((u) => (this.username = u));
 

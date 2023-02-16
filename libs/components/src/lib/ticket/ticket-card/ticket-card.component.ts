@@ -2,7 +2,12 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Movie, Theater, Ticket } from '@prisma/client';
 import * as dayjs from 'dayjs';
 import { map, Observable, tap } from 'rxjs';
-import { MovieService, TheaterService, TicketService, TicketWithSeatAndOwnerAndShow } from '@cineman/services';
+import {
+  MovieService,
+  TheaterService,
+  TicketService,
+  TicketWithSeatAndOwnerAndShow,
+} from '@cineman/services';
 
 @Component({
   selector: 'cineman-ticket-card',

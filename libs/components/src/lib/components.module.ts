@@ -11,7 +11,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import { MatCardModule } from '@angular/material/card';
 
-import { HttpClientModule  } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -33,11 +33,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 import { MatMenuModule } from '@angular/material/menu';
 
-
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-
 
 import { QRCodeModule } from 'angularx-qrcode';
 import { MovieCardComponent } from './movie/movie-card/movie-card.component';
@@ -62,7 +60,10 @@ import { TicketGridComponent } from './ticket/ticket-grid/ticket-grid.component'
 import { QrcodeDialogComponent } from './ticket/qrcode-dialog/qrcode-dialog.component';
 import { LoginComponent } from './login/login.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
-import { BuyTicketDialogComponent, SeatsComponent } from './seats/seats.component';
+import {
+  BuyTicketDialogComponent,
+  SeatsComponent,
+} from './seats/seats.component';
 
 export {
   AddButtonComponent,
@@ -88,9 +89,8 @@ export {
   TicketGridComponent,
   QrcodeDialogComponent,
   LoginComponent,
-  PagenotfoundComponent
-}
-
+  PagenotfoundComponent,
+};
 
 @NgModule({
   imports: [
@@ -149,7 +149,7 @@ export {
     TicketGridComponent,
     QrcodeDialogComponent,
     LoginComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
   ],
   exports: [
     AddButtonComponent,
@@ -177,6 +177,6 @@ export {
     LoginComponent,
     PagenotfoundComponent,
     RouterModule,
-  ]
+  ],
 })
 export class ComponentsModule {}

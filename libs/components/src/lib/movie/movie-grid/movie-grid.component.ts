@@ -13,7 +13,6 @@ import { MovieCreateComponent } from '../movie-create/movie-create.component';
   styleUrls: ['./movie-grid.component.scss'],
 })
 export class MovieGridComponent implements OnInit {
-  
   movies$: Observable<MovieWithRating[]>;
   isAdmin$: Observable<boolean>;
 

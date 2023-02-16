@@ -40,17 +40,16 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
-
 import { QRCodeModule } from 'angularx-qrcode';
 
-import { ServicesModule, AuthInterceptor, ApiInterceptor, } from '@cineman/services';
-
-
+import {
+  ServicesModule,
+  AuthInterceptor,
+  ApiInterceptor,
+} from '@cineman/services';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     ComponentsModule,
     ServicesModule,

@@ -2,7 +2,12 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Prisma } from '@prisma/client';
-import { MovieService, MovieWithRating, RatingService, LoginService } from '@cineman/services';
+import {
+  MovieService,
+  MovieWithRating,
+  RatingService,
+  LoginService,
+} from '@cineman/services';
 
 import { concat, map, mergeMap, Observable, of, shareReplay, tap } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';

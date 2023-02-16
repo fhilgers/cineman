@@ -12,7 +12,15 @@ import {
 } from '@prisma/client';
 import * as dayjs from 'dayjs';
 import { first, Observable, tap } from 'rxjs';
-import { CustomerService, LoginService, MovieService, ShowService, TheaterService, TicketService, TicketWithSeatAndOwnerAndShow } from '@cineman/services';
+import {
+  CustomerService,
+  LoginService,
+  MovieService,
+  ShowService,
+  TheaterService,
+  TicketService,
+  TicketWithSeatAndOwnerAndShow,
+} from '@cineman/services';
 
 @Component({
   selector: 'cineman-show-detail',
