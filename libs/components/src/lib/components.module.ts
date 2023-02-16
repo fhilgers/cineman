@@ -48,6 +48,7 @@ import { RatingDialogComponent } from './movie/rating-dialog/rating-dialog.compo
 import { ServicesModule } from '@cineman/services';
 import { Route, RouterModule } from '@angular/router';
 import { RatingCardComponent } from './rating/rating-card/rating-card.component';
+import { RatingGridComponent } from './rating/rating-grid/rating-grid.component';
 import { TheaterCardComponent } from './theater/theater-card/theater-card.component';
 import { TheaterDetailComponent } from './theater/theater-detail/theater-detail.component';
 import { TheaterCreateComponent } from './theater/theater-create/theater-create.component';
@@ -76,7 +77,8 @@ export {
   SeatsComponent,
   BuyTicketDialogComponent,
   RatingDialogComponent,
-  RatingCardComponent
+  RatingCardComponent,
+  RatingGridComponent,
 }
 
 export const appRoutes: Route[] = [
@@ -87,6 +89,7 @@ export const appRoutes: Route[] = [
   { path: 'theaters/:id', component: TheaterDetailComponent },
   { path: 'shows', component: ShowGridComponent },
   { path: 'shows/:id', component: ShowDetailComponent },
+  { path: 'ratings', component: RatingGridComponent },
 ];
 
 
@@ -142,6 +145,7 @@ export const appRoutes: Route[] = [
     BuyTicketDialogComponent,
     RatingDialogComponent,
     RatingCardComponent,
+    RatingGridComponent,
   ],
   exports: [
     AddButtonComponent,
@@ -162,7 +166,9 @@ export const appRoutes: Route[] = [
     BuyTicketDialogComponent,
     RatingDialogComponent,
     RatingCardComponent,
+    RatingGridComponent,
     RouterModule,
+    
   ]
 })
 export class ComponentsModule {}

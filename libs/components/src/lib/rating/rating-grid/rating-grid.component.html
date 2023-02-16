@@ -1,0 +1,8 @@
+<cineman-grid-list>
+  <cineman-rating-card
+    *ngFor="let rating of ratings$ | async"
+    [rating]="rating"
+    [showDelete]="(isAdmin$ | async) || false"
+    (delete)="delete(rating.id)"
+  ></cineman-rating-card>
+</cineman-grid-list>
