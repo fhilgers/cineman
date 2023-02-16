@@ -5,7 +5,10 @@ import { Prisma } from '@prisma/client';
 
 @Catch(Prisma.PrismaClientKnownRequestError)
 export class PrismaClientExceptionFilter extends BaseExceptionFilter {
-  catch(exception: Prisma.PrismaClientKnownRequestError, host: ArgumentsHost) {
+  override catch(
+    exception: Prisma.PrismaClientKnownRequestError,
+    host: ArgumentsHost
+  ) {
     console.error(exception.message);
 
     const ctx = host.switchToHttp();
@@ -27,7 +30,7 @@ export class PrismaClientExceptionFilter extends BaseExceptionFilter {
 
 @Catch(Prisma.PrismaClientUnknownRequestError)
 export class PrismaClientUnknownExceptionFilter extends BaseExceptionFilter {
-  catch(
+  override catch(
     exception: Prisma.PrismaClientUnknownRequestError,
     host: ArgumentsHost
   ) {
@@ -47,7 +50,10 @@ export class PrismaClientUnknownExceptionFilter extends BaseExceptionFilter {
 
 @Catch(Prisma.PrismaClientValidationError)
 export class PrismaClientValidationExceptionFilter extends BaseExceptionFilter {
-  catch(exception: Prisma.PrismaClientValidationError, host: ArgumentsHost) {
+  override catch(
+    exception: Prisma.PrismaClientValidationError,
+    host: ArgumentsHost
+  ) {
     console.error(exception.message);
 
     const ctx = host.switchToHttp();
