@@ -1,4 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from '@cineman/user';
 import { Role, User } from '@prisma/client';
@@ -22,8 +27,18 @@ export class AuthService {
   }
 
   async register(body) {
-    const { username, hash } = body;
-    return this.userService.create({ username, hash, roles: [Role.USER] });
+    const { username, password, name, address } = body;
+
+    const hash = await bcrypt.hash(password, 10);
+
+    return this.userService.create({
+      username,
+      hash,
+      roles: [Role.USER],
+      customer: {
+        create: { name, address },
+      },
+    });
   }
 
   async login(user: User) {
@@ -35,5 +50,29 @@ export class AuthService {
     return {
       access_token: this.jwtService.sign(payload),
     };
+  }
+
+  async refresh(token: string) {
+    const decoded = this.jwtService.decode(token) as {
+      username: string;
+      sub: string;
+      roles: Role[];
+    };
+    const { username, sub, roles } = decoded;
+    if (!decoded) throw new Error();
+
+    const user = await this.userService.findOne({ id: decoded.sub });
+    if (!user)
+      throw new HttpException(
+        'user with id does not exist',
+        HttpStatus.NOT_FOUND
+      );
+
+    return this.jwtService
+      .verifyAsync(token)
+      .then(() => {
+        return { access_token: this.jwtService.sign({ username, sub, roles }) };
+      })
+      .catch((e) => new UnauthorizedException(e));
   }
 }
