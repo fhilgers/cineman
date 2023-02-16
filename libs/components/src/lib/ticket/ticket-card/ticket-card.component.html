@@ -1,0 +1,30 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title
+      >{{ movieName | async }} - {{ theaterName | async }}</mat-card-title
+    >
+    <mat-card-subtitle
+      >Number: {{ seatNumber }} - Row: {{ seatRow }} - Price:
+      {{ ticketPrice }}</mat-card-subtitle
+    >
+  </mat-card-header>
+  <mat-card-actions align="end">
+    <button mat-icon-button (click)="qrcode()" color="primary">
+      <mat-icon>qr_code</mat-icon>
+    </button>
+    <div
+      matTooltip="Return only possible 1h before start"
+      [matTooltipDisabled]="canReturn"
+    >
+      <button
+        class="ml-4"
+        mat-raised-button
+        (click)="return()"
+        color="primary"
+        [disabled]="!canReturn"
+      >
+        Return
+      </button>
+    </div>
+  </mat-card-actions>
+</mat-card>

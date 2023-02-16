@@ -1,0 +1,8 @@
+<cineman-grid-list>
+  <cineman-ticket-card
+    *ngFor="let ticket of tickets"
+    [ticket]="ticket"
+    (returnEvent)="return($event)"
+    (qrcodeEvent)="openDialog(ticket)"
+  ></cineman-ticket-card>
+</cineman-grid-list>

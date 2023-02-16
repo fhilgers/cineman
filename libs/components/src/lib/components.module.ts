@@ -57,6 +57,9 @@ import { ShowCardComponent } from './show/show-card/show-card.component';
 import { ShowGridComponent } from './show/show-grid/show-grid.component';
 import { ShowCreateComponent } from './show/show-create/show-create.component';
 import { ShowDetailComponent } from './show/show-detail/show-detail.component';
+import { TicketCardComponent } from './ticket/ticket-card/ticket-card.component';
+import { TicketGridComponent } from './ticket/ticket-grid/ticket-grid.component';
+import { QrcodeDialogComponent } from './ticket/qrcode-dialog/qrcode-dialog.component';
 import { BuyTicketDialogComponent, SeatsComponent } from './seats/seats.component';
 
 export {
@@ -79,6 +82,9 @@ export {
   RatingDialogComponent,
   RatingCardComponent,
   RatingGridComponent,
+  TicketCardComponent,
+  TicketGridComponent,
+  QrcodeDialogComponent
 }
 
 export const appRoutes: Route[] = [
@@ -146,6 +152,9 @@ export const appRoutes: Route[] = [
     RatingDialogComponent,
     RatingCardComponent,
     RatingGridComponent,
+    TicketCardComponent,
+    TicketGridComponent,
+    QrcodeDialogComponent
   ],
   exports: [
     AddButtonComponent,
@@ -167,8 +176,10 @@ export const appRoutes: Route[] = [
     RatingDialogComponent,
     RatingCardComponent,
     RatingGridComponent,
+    TicketCardComponent,
+    TicketGridComponent,
+    QrcodeDialogComponent,
     RouterModule,
-    
   ]
 })
 export class ComponentsModule {}
