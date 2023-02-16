@@ -1,0 +1,17 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title
+      >{{ rating.customer.name }}'s rating of
+      {{ rating.movie.name }}</mat-card-title
+    >
+    <mat-card-subtitle>Stars {{ rating.stars }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <span>{{ rating.review }}</span>
+  </mat-card-content>
+  <mat-card-actions *ngIf="showDelete" align="end">
+    <button class="ml-4" mat-raised-button color="warn" (click)="deleteEvent()">
+      Delete
+    </button>
+  </mat-card-actions>
+</mat-card>

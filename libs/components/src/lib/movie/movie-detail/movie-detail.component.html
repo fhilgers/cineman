@@ -1,0 +1,22 @@
+<div class="m-8" *ngIf="movie$ | async as movie">
+  <cineman-movie-card
+    [movie]="movie"
+    [isUser]="(isUser$ | async) || false"
+    [showRate]="true"
+    (rate)="openDialog(movie.id)"
+  ></cineman-movie-card>
+
+  <mat-card class="my-8" *ngIf="ratings$ | async as ratings">
+    <mat-card-header>
+      <mat-card-title> Ratings </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <cineman-grid-list>
+        <cineman-rating-card
+          *ngFor="let rating of ratings"
+          [rating]="rating"
+        ></cineman-rating-card>
+      </cineman-grid-list>
+    </mat-card-content>
+  </mat-card>
+</div>

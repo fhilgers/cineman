@@ -1,0 +1,63 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ movie.name }}</mat-card-title>
+    <mat-card-subtitle>Age: {{ movie.age }}</mat-card-subtitle>
+    <mat-card-subtitle>Duration: {{ formatDuration(movie) }}</mat-card-subtitle>
+    <mat-card-subtitle>Rating: {{ getRating(movie) }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p [ngClass]="{ 'line-clamp-6': showMore }" class="text-justify">
+      {{ movie.description }}
+    </p>
+  </mat-card-content>
+
+  <!--
+      [routerLink]="['/movies', movie.id]"
+      [state]="movie"
+  -->
+
+  <mat-card-actions align="end">
+    <button
+      *ngIf="showMore"
+      mat-raised-button
+      color="primary"
+
+    >
+      See More
+    </button>
+    <div
+      *ngIf="showRate"
+      matTooltip="Login to Rate"
+      [matTooltipDisabled]="isUser"
+    >
+      <button
+        class="ml-4"
+        mat-raised-button
+        color="primary"
+        (click)="rateEvent()"
+        [disabled]="!isUser"
+      >
+        Rate
+      </button>
+    </div>
+
+    <button
+      *ngIf="isAdmin && showEdit"
+      class="ml-4"
+      mat-raised-button
+      color="primary"
+      (click)="editEvent()"
+    >
+      Edit
+    </button>
+    <button
+      *ngIf="isAdmin && showDelete"
+      class="ml-4"
+      mat-raised-button
+      color="warn"
+      (click)="deleteEvent()"
+    >
+      Delete
+    </button>
+  </mat-card-actions>
+</mat-card>
