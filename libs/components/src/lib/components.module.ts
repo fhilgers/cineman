@@ -60,6 +60,8 @@ import { ShowDetailComponent } from './show/show-detail/show-detail.component';
 import { TicketCardComponent } from './ticket/ticket-card/ticket-card.component';
 import { TicketGridComponent } from './ticket/ticket-grid/ticket-grid.component';
 import { QrcodeDialogComponent } from './ticket/qrcode-dialog/qrcode-dialog.component';
+import { LoginComponent } from './login/login.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { BuyTicketDialogComponent, SeatsComponent } from './seats/seats.component';
 
 export {
@@ -84,19 +86,10 @@ export {
   RatingGridComponent,
   TicketCardComponent,
   TicketGridComponent,
-  QrcodeDialogComponent
+  QrcodeDialogComponent,
+  LoginComponent,
+  PagenotfoundComponent
 }
-
-export const appRoutes: Route[] = [
-  { path: '', component: MovieGridComponent },
-  { path: 'movies', component: MovieGridComponent },
-  { path: 'movies/:id', component: MovieDetailComponent },
-  { path: 'theaters', component: TheaterGridComponent },
-  { path: 'theaters/:id', component: TheaterDetailComponent },
-  { path: 'shows', component: ShowGridComponent },
-  { path: 'shows/:id', component: ShowDetailComponent },
-  { path: 'ratings', component: RatingGridComponent },
-];
 
 
 @NgModule({
@@ -130,7 +123,7 @@ export const appRoutes: Route[] = [
     BrowserModule,
     BrowserAnimationsModule,
     ServicesModule,
-    RouterModule.forChild(appRoutes),
+    RouterModule.forChild([]),
   ],
   declarations: [
     AddButtonComponent,
@@ -154,7 +147,9 @@ export const appRoutes: Route[] = [
     RatingGridComponent,
     TicketCardComponent,
     TicketGridComponent,
-    QrcodeDialogComponent
+    QrcodeDialogComponent,
+    LoginComponent,
+    PagenotfoundComponent
   ],
   exports: [
     AddButtonComponent,
@@ -179,6 +174,8 @@ export const appRoutes: Route[] = [
     TicketCardComponent,
     TicketGridComponent,
     QrcodeDialogComponent,
+    LoginComponent,
+    PagenotfoundComponent,
     RouterModule,
   ]
 })
