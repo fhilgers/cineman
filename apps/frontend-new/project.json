@@ -6,7 +6,7 @@
   "prefix": "cineman",
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "@nrwl/angular:webpack-browser",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/frontend-new",
@@ -23,7 +23,10 @@
           "@angular/material/prebuilt-themes/indigo-pink.css",
           "apps/frontend-new/src/styles.scss"
         ],
-        "scripts": []
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "apps/frontend-new/webpack.config.js"
+        }
       },
       "configurations": {
         "production": {
@@ -53,7 +56,7 @@
       "defaultConfiguration": "production"
     },
     "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
+      "executor": "@nrwl/angular:webpack-dev-server",
       "configurations": {
         "production": {
           "browserTarget": "frontend-new:build:production"
