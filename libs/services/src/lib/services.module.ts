@@ -21,6 +21,7 @@ export {
 };
 
 export { MovieWithRating } from './movie.service';
+export { TicketWithSeatAndOwnerAndShow } from './ticket.service';
 
 @NgModule({
   imports: [CommonModule],
