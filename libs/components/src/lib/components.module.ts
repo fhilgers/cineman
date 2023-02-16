@@ -52,6 +52,11 @@ import { TheaterCardComponent } from './theater/theater-card/theater-card.compon
 import { TheaterDetailComponent } from './theater/theater-detail/theater-detail.component';
 import { TheaterCreateComponent } from './theater/theater-create/theater-create.component';
 import { TheaterGridComponent } from './theater/theater-grid/theater-grid.component';
+import { ShowCardComponent } from './show/show-card/show-card.component';
+import { ShowGridComponent } from './show/show-grid/show-grid.component';
+import { ShowCreateComponent } from './show/show-create/show-create.component';
+import { ShowDetailComponent } from './show/show-detail/show-detail.component';
+import { BuyTicketDialogComponent, SeatsComponent } from './seats/seats.component';
 
 export {
   AddButtonComponent,
@@ -64,6 +69,12 @@ export {
   TheaterDetailComponent,
   TheaterGridComponent,
   TheaterCreateComponent,
+  ShowCardComponent,
+  ShowDetailComponent,
+  ShowGridComponent,
+  ShowCreateComponent,
+  SeatsComponent,
+  BuyTicketDialogComponent,
   RatingDialogComponent,
   RatingCardComponent
 }
@@ -74,6 +85,8 @@ export const appRoutes: Route[] = [
   { path: 'movies/:id', component: MovieDetailComponent },
   { path: 'theaters', component: TheaterGridComponent },
   { path: 'theaters/:id', component: TheaterDetailComponent },
+  { path: 'shows', component: ShowGridComponent },
+  { path: 'shows/:id', component: ShowDetailComponent },
 ];
 
 
@@ -121,6 +134,12 @@ export const appRoutes: Route[] = [
     TheaterDetailComponent,
     TheaterGridComponent,
     TheaterCreateComponent,
+    ShowCardComponent,
+    ShowDetailComponent,
+    ShowGridComponent,
+    ShowCreateComponent,
+    SeatsComponent,
+    BuyTicketDialogComponent,
     RatingDialogComponent,
     RatingCardComponent,
   ],
@@ -135,6 +154,12 @@ export const appRoutes: Route[] = [
     TheaterDetailComponent,
     TheaterGridComponent,
     TheaterCreateComponent,
+    ShowCardComponent,
+    ShowDetailComponent,
+    ShowGridComponent,
+    ShowCreateComponent,
+    SeatsComponent,
+    BuyTicketDialogComponent,
     RatingDialogComponent,
     RatingCardComponent,
     RouterModule,

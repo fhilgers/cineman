@@ -1,0 +1,85 @@
+<form [formGroup]="form" (ngSubmit)="submitForm()">
+  <mat-card class="flex flex-col p-4">
+    <mat-card-title>Add Show</mat-card-title>
+    <mat-card-content>
+      <div class="flex flex-col m-4">
+        <div class="flex flex-row justify-between">
+          <mat-form-field class="grow mr-4" appearance="fill">
+            <mat-label>Theater</mat-label>
+            <mat-select formControlName="theaterId">
+              <mat-option
+                *ngFor="let theater of data.theaters$ | async"
+                [value]="theater.id"
+                >{{ theater.name }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="grow ml-4" appearance="fill">
+            <mat-label>Movie</mat-label>
+            <mat-select formControlName="movieId">
+              <mat-option
+                *ngFor="let movie of data.movies$ | async"
+                [value]="movie.id"
+                >{{ movie.name }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="flex flex-row justify-between">
+          <mat-form-field class="grow mr-4" appearance="fill">
+            <mat-label>Start</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker1"
+              formControlName="startDate"
+            />
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker1"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field class="grow ml-4" appearance="fill">
+            <mat-label>End</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker2"
+              formControlName="endDate"
+            />
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker2"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div class="flex flex-row justify-between">
+          <mat-form-field class="grow mr-4" appearance="fill">
+            <mat-label>Start</mat-label>
+            <input matInput type="time" formControlName="startTime" />
+          </mat-form-field>
+
+          <mat-form-field class="grow ml-4" appearance="fill">
+            <mat-label>End</mat-label>
+            <input matInput type="time" formControlName="endTime" />
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button
+        mat-raised-button
+        type="submit"
+        color="primary"
+        [disabled]="form.invalid"
+      >
+        Add
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

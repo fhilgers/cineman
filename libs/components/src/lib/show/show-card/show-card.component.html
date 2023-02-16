@@ -1,0 +1,40 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ movie?.name }} - {{ theater?.name }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-chip-listbox>
+      <mat-chip color="accent" disableRipple
+        >{{ startStr }} - {{ endStr }}</mat-chip
+      >
+    </mat-chip-listbox>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button
+      mat-raised-button
+      color="primary"
+      [routerLink]="['/shows', show.id]"
+      [state]="{ show: show, movie: movie, theater: theater }"
+    >
+      See More
+    </button>
+    <div *ngIf="isAdmin">
+      <button
+        class="ml-4"
+        mat-raised-button
+        color="primary"
+        (click)="editEvent()"
+      >
+        Edit
+      </button>
+      <button
+        class="ml-4"
+        mat-raised-button
+        color="warn"
+        (click)="deleteEvent()"
+      >
+        Delete
+      </button>
+    </div>
+  </mat-card-actions>
+</mat-card>

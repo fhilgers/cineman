@@ -1,0 +1,18 @@
+<div class="flex flex-col justify-center">
+  <div
+    class="flex flex-row justify-center"
+    *ngFor="let ticketRow of ticketMatrix; let rowI = index"
+  >
+    <div *ngFor="let data of ticketRow; let colI = index">
+      <button
+        mat-icon-button
+        [disabled]="data.sold"
+        (click)="openDialog(data.id)"
+      >
+        <mat-icon *ngIf="data.type === 'DELUXE'">chair</mat-icon>
+        <mat-icon *ngIf="data.type === 'REMOVABLE'">accessible</mat-icon>
+        <mat-icon *ngIf="data.type === 'NORMAL'">chair_alt</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

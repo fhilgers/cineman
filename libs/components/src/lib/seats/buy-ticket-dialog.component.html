@@ -1,0 +1,21 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Buy Ticket</mat-card-title>
+    <mat-card-subtitle>Price: {{ data.ticket.price }}€</mat-card-subtitle>
+    <mat-card-subtitle>Number: {{ data.ticket.seat.number }}</mat-card-subtitle>
+    <mat-card-subtitle>Row: {{ data.ticket.seat.row }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-actions align="end">
+    <div *ngIf="(data.isUser$ | async) === false; then guest; else user"></div>
+    <ng-template #guest>
+      <div matTooltip="Login To Buy" matTooltipPosition="right">
+        <button mat-raised-button color="primary" [disabled]="true">Buy</button>
+      </div>
+    </ng-template>
+    <ng-template #user>
+      <button mat-raised-button color="primary" (click)="buyTicket()">
+        Buy
+      </button>
+    </ng-template>
+  </mat-card-actions>
+</mat-card>
