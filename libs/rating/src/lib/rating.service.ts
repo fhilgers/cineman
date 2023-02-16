@@ -18,14 +18,16 @@ export class RatingService {
     cursor?: Prisma.RatingWhereUniqueInput;
     where?: Prisma.RatingWhereInput;
     orderBy?: Prisma.RatingOrderByWithRelationInput;
+    include?: Prisma.RatingInclude;
   }) {
-    const { skip, take, cursor, where, orderBy } = params;
+    const { skip, take, cursor, where, orderBy, include } = params;
     return this.prismaService.rating.findMany({
       skip,
       take,
       cursor,
       where,
       orderBy,
+      include,
     });
   }
 

@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { RatingService } from './rating.service';
 import { CreateRatingDto } from './dto/create-rating.dto';
@@ -26,8 +27,15 @@ export class RatingController implements IRatingGateway {
 
   @Public()
   @Get()
-  findAll(): Promise<Rating[]> {
-    return this.RatingService.findAll({});
+  findAll(
+    @Query('movieId') movieId?: string,
+    @Query('includeCustomer') customer?: boolean,
+    @Query('includeMovie') movie?: boolean
+  ): Promise<Rating[]> {
+    return this.RatingService.findAll({
+      where: { movieId },
+      include: { customer, movie },
+    });
   }
 
   @Get(':id')

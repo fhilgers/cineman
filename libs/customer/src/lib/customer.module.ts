@@ -4,8 +4,8 @@ import { CustomerController } from './customer.controller';
 import { PrismaModule } from '@cineman/prisma';
 import { CustomerExistsRule } from './customer.validator';
 
-export { CreateCustomerDto } from './dto/create-customer.dto';
-export { UpdateCustomerDto } from './dto/update-customer.dto';
+export { CreateSeatDto as CreateCustomerDto } from './dto/create-customer.dto';
+export { UpdateSeatDto as UpdateCustomerDto } from './dto/update-customer.dto';
 export { ICustomerGateway } from './gateway/gateway';
 
 export { IsCustomer } from './customer.validator';

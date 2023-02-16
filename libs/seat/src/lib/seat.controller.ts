@@ -6,10 +6,11 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { SeatService } from './seat.service';
-import { CreateSeatDto } from './dto/create-seat.dto';
-import { UpdateSeatDto } from './dto/update-seat.dto';
+import { CreateRatingDto } from './dto/create-seat.dto';
+import { UpdateRatingDto } from './dto/update-seat.dto';
 import { Seat } from '@prisma/client';
 import { ISeatGateway } from './gateway/gateway';
 
@@ -18,9 +19,14 @@ export class SeatController implements ISeatGateway {
   constructor(private readonly SeatService: SeatService) {}
 
   @Post()
-  async create(@Body() createSeatDto: CreateSeatDto): Promise<Seat> {
+  async create(@Body() createSeatDto: CreateRatingDto): Promise<Seat> {
     console.log(createSeatDto);
     return this.SeatService.create(createSeatDto);
+  }
+
+  @Get()
+  findByTheater(@Query('theaterId') theaterId: string): Promise<Seat[]> {
+    return this.SeatService.findAll({ where: { theaterId } });
   }
 
   @Get()
@@ -36,7 +42,7 @@ export class SeatController implements ISeatGateway {
   @Patch(':id')
   update(
     @Param('id') id: string,
-    @Body() updateSeatDto: UpdateSeatDto
+    @Body() updateSeatDto: UpdateRatingDto
   ): Promise<Seat> {
     return this.SeatService.update({ where: { id }, data: updateSeatDto });
   }

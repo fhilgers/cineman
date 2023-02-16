@@ -3,7 +3,7 @@ import { IsEnum, IsInt, IsOptional, IsUUID, Min } from 'class-validator';
 import { IsTheater } from '@cineman/theater';
 import { IsSeatUniqueForTheater } from '../seat.validator';
 
-export class CreateSeatDto {
+export class CreateRatingDto {
   @Min(1)
   @IsInt()
   @IsSeatUniqueForTheater('theaterId')

@@ -6,12 +6,22 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
+  DefaultValuePipe,
+  Req,
+  Injectable,
+  CanActivate,
+  ExecutionContext,
+  HttpException,
+  HttpStatus,
 } from '@nestjs/common';
 import { TicketService } from './ticket.service';
 import { CreateTicketDto } from './dto/create-ticket.dto';
 import { UpdateTicketDto } from './dto/update-ticket.dto';
-import { Ticket } from '@prisma/client';
+import { Role, Ticket } from '@prisma/client';
 import { ITicketGateway } from './gateway/gateway';
+import { Public, Roles } from '@cineman/authorization';
+import { Reflector } from '@nestjs/core';
 
 @Controller('tickets')
 export class TicketController implements ITicketGateway {
@@ -23,8 +33,18 @@ export class TicketController implements ITicketGateway {
   }
 
   @Get()
-  findAll(): Promise<Ticket[]> {
-    return this.TicketService.findAll({});
+  @Public()
+  findAll(
+    @Query('showId') showId?: string,
+    @Query('ownerId') ownerId?: string,
+    @Query('includeSeat') seat = false,
+    @Query('includeOwner') owner = false,
+    @Query('includeShow') show = false
+  ): Promise<Ticket[]> {
+    return this.TicketService.findAll({
+      where: { showId, ownerId },
+      include: { seat, owner, show },
+    });
   }
 
   @Get(':id')
@@ -43,5 +63,28 @@ export class TicketController implements ITicketGateway {
   @Delete(':id')
   remove(@Param('id') id: string): Promise<Ticket> {
     return this.TicketService.remove({ id });
+  }
+
+  @Roles(Role.USER)
+  @Post(':id/buy')
+  buyOne(@Param('id') id: string, @Req() req: any): Promise<Ticket> {
+    const userId = req.user.userId;
+
+    return this.TicketService.update({
+      where: { id },
+      data: {
+        owner: { connect: { userId } },
+      },
+    });
+  }
+
+  @Roles(Role.USER)
+  @Post(':id/return')
+  async returnOne(@Param('id') id: string, @Req() req: any): Promise<Ticket> {
+    const userId = req.user.userId;
+    return this.TicketService.return({
+      where: { id },
+      customerWhere: { userId },
+    });
   }
 }

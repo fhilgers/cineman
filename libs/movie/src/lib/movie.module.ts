@@ -4,6 +4,7 @@ import { MovieController } from './movie.controller';
 import { PrismaModule } from '@cineman/prisma';
 import { MovieExistsRule, UniqueMovieNameRule } from './movie.validator';
 
+export { RateMovieDto } from './dto/rate-movie.dto';
 export { CreateMovieDto } from './dto/create-movie.dto';
 export { UpdateMovieDto } from './dto/update-movie.dto';
 export { IMovieGateway } from './gateway/gateway';

@@ -4,7 +4,7 @@ import { UpdateTicketDto } from '../dto/update-ticket.dto';
 
 export interface ITicketGateway {
   create(createTicketDto: CreateTicketDto): Promise<Ticket>;
-  findAll(): Promise<Ticket[]>;
+  findAll(showId?: string): Promise<Ticket[]>;
   findOne(id: string): Promise<Ticket>;
   update(id: string, updateTicketDto: UpdateTicketDto): Promise<Ticket>;
   remove(id: string): Promise<Ticket>;

@@ -6,10 +6,11 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { CustomerService } from './customer.service';
-import { CreateCustomerDto } from './dto/create-customer.dto';
-import { UpdateCustomerDto } from './dto/update-customer.dto';
+import { CreateSeatDto } from './dto/create-customer.dto';
+import { UpdateSeatDto } from './dto/update-customer.dto';
 import { Customer } from '@prisma/client';
 import { ICustomerGateway } from './gateway/gateway';
 
@@ -18,13 +19,13 @@ export class CustomerController implements ICustomerGateway {
   constructor(private readonly CustomerService: CustomerService) {}
 
   @Post()
-  create(@Body() createCustomerDto: CreateCustomerDto): Promise<Customer> {
+  create(@Body() createCustomerDto: CreateSeatDto): Promise<Customer> {
     return this.CustomerService.create(createCustomerDto);
   }
 
   @Get()
-  findAll(): Promise<Customer[]> {
-    return this.CustomerService.findAll({});
+  findAll(@Query('userId') userId?: string): Promise<Customer[]> {
+    return this.CustomerService.findAll({ where: { userId } });
   }
 
   @Get(':id')
@@ -35,7 +36,7 @@ export class CustomerController implements ICustomerGateway {
   @Patch(':id')
   update(
     @Param('id') id: string,
-    @Body() updateCustomerDto: UpdateCustomerDto
+    @Body() updateCustomerDto: UpdateSeatDto
   ): Promise<Customer> {
     return this.CustomerService.update({
       where: { id },

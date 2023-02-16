@@ -6,7 +6,17 @@ import { PrismaService } from '@cineman/prisma';
 export class ShowService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  create(data: Prisma.ShowUncheckedCreateInput) {
+  async create(data: Prisma.ShowUncheckedCreateInput) {
+    const seatIds = await this.prismaService.seat
+      .findMany({
+        where: { theaterId: data.theaterId },
+      })
+      .then((seats) => seats.map((seat) => seat.id));
+
+    const ticketData = seatIds.map((seatId) => ({ price: -1, seatId }));
+
+    data.tickets = { createMany: { data: ticketData } };
+
     return this.prismaService.show.create({
       data,
     });

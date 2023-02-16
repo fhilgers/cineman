@@ -18,20 +18,27 @@ export class MovieService {
     cursor?: Prisma.MovieWhereUniqueInput;
     where?: Prisma.MovieWhereInput;
     orderBy?: Prisma.MovieOrderByWithRelationInput;
+    include?: Prisma.MovieInclude;
   }) {
-    const { skip, take, cursor, where, orderBy } = params;
+    const { skip, take, cursor, where, orderBy, include } = params;
     return this.prismaService.movie.findMany({
       skip,
       take,
       cursor,
       where,
       orderBy,
+      include,
     });
   }
 
-  findOne(movieWhereUniqueInput: Prisma.MovieWhereUniqueInput) {
+  findOne(params: {
+    where: Prisma.MovieWhereUniqueInput;
+    include?: Prisma.MovieInclude;
+  }) {
+    const { where, include } = params;
     return this.prismaService.movie.findUniqueOrThrow({
-      where: movieWhereUniqueInput,
+      where,
+      include,
     });
   }
 
@@ -49,6 +56,22 @@ export class MovieService {
   remove(where: Prisma.MovieWhereUniqueInput) {
     return this.prismaService.movie.delete({
       where,
+    });
+  }
+
+  rate(
+    movieWhere: Prisma.MovieWhereUniqueInput,
+    customerWhere: Prisma.CustomerWhereUniqueInput,
+    stars: number,
+    review: string
+  ) {
+    return this.prismaService.rating.create({
+      data: {
+        movie: { connect: movieWhere },
+        customer: { connect: customerWhere },
+        stars,
+        review,
+      },
     });
   }
 }

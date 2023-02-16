@@ -35,11 +35,18 @@ export class TheaterService {
     });
   }
 
-  update(params: {
+  async update(params: {
     where: Prisma.TheaterWhereUniqueInput;
     data: Prisma.TheaterUpdateInput;
   }) {
     const { where, data } = params;
+
+    if (data.seats)
+      await this.prismaService.theater.update({
+        where,
+        data: { seats: { deleteMany: { theaterId: where.id } } },
+      });
+
     return this.prismaService.theater.update({
       where,
       data,

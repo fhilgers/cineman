@@ -4,8 +4,8 @@ import { SeatController } from './seat.controller';
 import { PrismaModule } from '@cineman/prisma';
 import { SeatExistsRule, UniqueNumberForTheaterRule } from './seat.validator';
 
-export { CreateSeatDto } from './dto/create-seat.dto';
-export { UpdateSeatDto } from './dto/update-seat.dto';
+export { CreateRatingDto as CreateSeatDto } from './dto/create-seat.dto';
+export { UpdateRatingDto as UpdateSeatDto } from './dto/update-seat.dto';
 export { ISeatGateway } from './gateway/gateway';
 
 export { IsSeat } from './seat.validator';
