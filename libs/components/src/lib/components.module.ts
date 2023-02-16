@@ -48,6 +48,10 @@ import { RatingDialogComponent } from './movie/rating-dialog/rating-dialog.compo
 import { ServicesModule } from '@cineman/services';
 import { Route, RouterModule } from '@angular/router';
 import { RatingCardComponent } from './rating/rating-card/rating-card.component';
+import { TheaterCardComponent } from './theater/theater-card/theater-card.component';
+import { TheaterDetailComponent } from './theater/theater-detail/theater-detail.component';
+import { TheaterCreateComponent } from './theater/theater-create/theater-create.component';
+import { TheaterGridComponent } from './theater/theater-grid/theater-grid.component';
 
 export {
   AddButtonComponent,
@@ -56,6 +60,10 @@ export {
   MovieDetailComponent,
   MovieGridComponent,
   MovieCreateComponent,
+  TheaterCardComponent,
+  TheaterDetailComponent,
+  TheaterGridComponent,
+  TheaterCreateComponent,
   RatingDialogComponent,
   RatingCardComponent
 }
@@ -64,6 +72,8 @@ export const appRoutes: Route[] = [
   { path: '', component: MovieGridComponent },
   { path: 'movies', component: MovieGridComponent },
   { path: 'movies/:id', component: MovieDetailComponent },
+  { path: 'theaters', component: TheaterGridComponent },
+  { path: 'theaters/:id', component: TheaterDetailComponent },
 ];
 
 
@@ -107,6 +117,10 @@ export const appRoutes: Route[] = [
     MovieDetailComponent,
     MovieGridComponent,
     MovieCreateComponent,
+    TheaterCardComponent,
+    TheaterDetailComponent,
+    TheaterGridComponent,
+    TheaterCreateComponent,
     RatingDialogComponent,
     RatingCardComponent,
   ],
@@ -117,6 +131,10 @@ export const appRoutes: Route[] = [
     MovieDetailComponent,
     MovieGridComponent,
     MovieCreateComponent,
+    TheaterCardComponent,
+    TheaterDetailComponent,
+    TheaterGridComponent,
+    TheaterCreateComponent,
     RatingDialogComponent,
     RatingCardComponent,
     RouterModule,

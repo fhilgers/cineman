@@ -1,0 +1,76 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title> Add Theater </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form
+      [formGroup]="form"
+      id="ngForm"
+      #createForm="ngForm"
+      (ngSubmit)="submitForm()"
+    >
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput type="text" formControlName="name" />
+      </mat-form-field>
+    </form>
+
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title> Seating </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="flex flex-col justify-center">
+          <div
+            class="flex flex-row justify-center"
+            *ngFor="let seatRow of seatMatrix; let rowI = index"
+          >
+            <div *ngFor="let type of seatRow; let colI = index">
+              <button mat-icon-button [matMenuTriggerFor]="typeMenu">
+                <mat-icon *ngIf="type === 'DELUXE'">chair</mat-icon>
+                <mat-icon *ngIf="type === 'REMOVABLE'">accessible</mat-icon>
+                <mat-icon *ngIf="type === 'NORMAL'">chair_alt</mat-icon>
+              </button>
+              <mat-menu #typeMenu="matMenu">
+                <button
+                  mat-menu-item
+                  (click)="changeType(rowI, colI, 'NORMAL')"
+                >
+                  Normal
+                </button>
+                <button
+                  mat-menu-item
+                  (click)="changeType(rowI, colI, 'DELUXE')"
+                >
+                  Deluxe
+                </button>
+                <button
+                  mat-menu-item
+                  (click)="changeType(rowI, colI, 'REMOVABLE')"
+                >
+                  Removable
+                </button>
+              </mat-menu>
+            </div>
+            <button (click)="addCol(rowI)"><mat-icon>add</mat-icon></button>
+            <button (click)="removeCol(rowI)">
+              <mat-icon>remove</mat-icon>
+            </button>
+          </div>
+          <button (click)="addRow()"><mat-icon>add</mat-icon></button>
+          <button (click)="removeRow()"><mat-icon>remove</mat-icon></button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button
+      mat-raised-button
+      color="primary"
+      form="ngForm"
+      [disabled]="createForm.form.invalid"
+    >
+      Add
+    </button>
+  </mat-card-actions>
+</mat-card>

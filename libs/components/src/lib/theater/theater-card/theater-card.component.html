@@ -1,0 +1,34 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ theater.name }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content> </mat-card-content>
+  <mat-card-actions *ngIf="showActions" align="end">
+    <button
+      mat-raised-button
+      color="primary"
+      [routerLink]="['/theaters', theater.id]"
+      [state]="theater"
+    >
+      See More
+    </button>
+    <div *ngIf="isAdmin">
+      <button
+        class="ml-4"
+        mat-raised-button
+        color="primary"
+        (click)="editEvent()"
+      >
+        Edit
+      </button>
+      <button
+        class="ml-4"
+        mat-raised-button
+        color="warn"
+        (click)="deleteEvent()"
+      >
+        Delete
+      </button>
+    </div>
+  </mat-card-actions>
+</mat-card>

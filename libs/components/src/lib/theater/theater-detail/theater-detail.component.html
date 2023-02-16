@@ -1,0 +1,51 @@
+<div class="m-8" *ngIf="theater$ | async as theater">
+  <cineman-theater-card [theater]="theater"></cineman-theater-card>
+
+  <mat-card class="my-8" *ngIf="shows$ | async as shows">
+    <mat-card-header>
+      <mat-card-title> Shows </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <cineman-grid-list>
+        <cineman-show-card
+          *ngFor="let show of shows"
+          [show]="show"
+        ></cineman-show-card>
+      </cineman-grid-list>
+    </mat-card-content>
+  </mat-card>
+
+  <!--
+ <mat-card class="my-8">
+      <mat-card-header>
+        Tickets:
+      </mat-card-header>
+      <mat-card-content>
+        <mat-card *ngFor="let ticket of tickets" class="my-4">
+          <mat-card-content>
+            <div class="flex flex-row items-center">
+              Seat {{ ticket.seat.number }}
+              Row: {{ ticket.seat.row }} Price: {{ ticket.price }}
+              <span class="grow shrink"></span>
+  
+              <div *ngIf="isUser; then user else guest"></div>
+  
+              <ng-template #user>
+                <button mat-raised-button color="primary" (click)="buyTicket(ticket)">Buy</button>
+              </ng-template>
+  
+              <ng-template #guest>
+                <div matTooltip="Login to buy">
+                  <button mat-raised-button disabled>Buy</button>
+                </div>
+                
+              </ng-template>
+              
+            </div>
+           
+          </mat-card-content>
+        </mat-card>
+      </mat-card-content>
+    </mat-card>
+    -->
+</div>

@@ -1,0 +1,15 @@
+<cineman-grid-list>
+  <cineman-theater-card
+    *ngFor="let theater of theaters$ | async"
+    [theater]="theater"
+    [showActions]="true"
+    [isAdmin]="(isAdmin$ | async) || false"
+    (edit)="edit(theater)"
+    (delete)="delete(theater)"
+  ></cineman-theater-card>
+</cineman-grid-list>
+
+<cineman-add-button
+  (click)="openDialog()"
+  *ngIf="isAdmin$ | async"
+></cineman-add-button>
