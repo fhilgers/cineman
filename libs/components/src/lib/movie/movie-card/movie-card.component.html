@@ -11,17 +11,13 @@
     </p>
   </mat-card-content>
 
-  <!--
-      [routerLink]="['/movies', movie.id]"
-      [state]="movie"
-  -->
-
   <mat-card-actions align="end">
     <button
       *ngIf="showMore"
       mat-raised-button
       color="primary"
-
+      [routerLink]="['/movies', movie.id]"
+      [state]="movie"
     >
       See More
     </button>
