@@ -8,6 +8,8 @@ import { ShowService } from './show.service';
 import { TheaterService } from './theater.service';
 import { TicketService } from './ticket.service';
 import { SeatService } from './seat.service';
+import { ApiInterceptor } from './api.interceptor';
+import { AuthInterceptor, AuthGuard } from './auth.interceptor';
 
 export {
   CustomerService,
@@ -17,7 +19,10 @@ export {
   SeatService,
   ShowService,
   TheaterService,
-  TicketService
+  TicketService,
+  ApiInterceptor,
+  AuthInterceptor,
+  AuthGuard
 };
 
 export { MovieWithRating } from './movie.service';
@@ -33,7 +38,10 @@ export { TicketWithSeatAndOwnerAndShow } from './ticket.service';
     SeatService,
     ShowService,
     TheaterService,
-    TicketService
+    TicketService,
+    ApiInterceptor,
+    AuthInterceptor,
+    AuthGuard,
   ],
 })
 export class ServicesModule {}
