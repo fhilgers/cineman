@@ -2,18 +2,36 @@ import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from '@cineman/prisma';
 
+// @ts-ignore
+import dayjs from 'dayjs';
+
 @Injectable()
 export class ShowService {
   constructor(private readonly prismaService: PrismaService) {}
 
   async create(data: Prisma.ShowUncheckedCreateInput) {
-    const seatIds = await this.prismaService.seat
-      .findMany({
-        where: { theaterId: data.theaterId },
-      })
-      .then((seats) => seats.map((seat) => seat.id));
+    const seats = await this.prismaService.seat.findMany({
+      where: { theaterId: data.theaterId },
+    });
 
-    const ticketData = seatIds.map((seatId) => ({ price: -1, seatId }));
+    const ticketData = seats.map((seat) => {
+      const ticket = { price: 10, seatId: seat.id };
+      if (seat.type == 'DELUXE') {
+        ticket.price += 5;
+      } else if (seat.type == 'REMOVABLE') {
+        ticket.price += 3;
+      }
+
+      if (dayjs(data.start).isAfter('12', 'hours')) {
+        ticket.price *= 1.2;
+      } else if (dayjs(data.start).isAfter('18', 'hours')) {
+        ticket.price *= 1.5;
+      }
+
+      ticket.price = Math.round(ticket.price);
+
+      return ticket;
+    });
 
     data.tickets = { createMany: { data: ticketData } };
 
