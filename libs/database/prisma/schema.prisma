@@ -10,8 +10,8 @@ datasource db {
 model Ticket {
   id         String   @id @default(uuid()) @db.Uuid
   price      Int
-  ownerId    String   @db.Uuid
-  owner      Customer @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  ownerId    String?   @db.Uuid
+  owner      Customer? @relation(fields: [ownerId], references: [id], onDelete: Cascade)
   seatId     String   @db.Uuid
   seat       Seat     @relation(fields: [seatId], references: [id], onDelete: Cascade)
   showId     String   @db.Uuid
