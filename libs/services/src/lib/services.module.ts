@@ -18,6 +18,8 @@ export {
   TicketService
 };
 
+export { MovieWithRating } from './movie.service';
+
 @NgModule({
   imports: [CommonModule],
   providers: [
