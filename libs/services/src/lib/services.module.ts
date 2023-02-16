@@ -7,12 +7,14 @@ import { RatingService } from './rating.service';
 import { ShowService } from './show.service';
 import { TheaterService } from './theater.service';
 import { TicketService } from './ticket.service';
+import { SeatService } from './seat.service';
 
 export {
   CustomerService,
   LoginService,
   MovieService,
   RatingService,
+  SeatService,
   ShowService,
   TheaterService,
   TicketService
@@ -27,6 +29,7 @@ export { MovieWithRating } from './movie.service';
     LoginService,
     MovieService,
     RatingService,
+    SeatService,
     ShowService,
     TheaterService,
     TicketService
