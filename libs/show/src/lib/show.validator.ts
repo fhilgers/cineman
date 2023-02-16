@@ -13,7 +13,7 @@ export function IsNotOverlappingForTheater(
   theaterIdProperty: string,
   validationOptions?: ValidationOptions
 ) {
-  return function (object: unknown, propertyName: string) {
+  return function (object: object, propertyName: string) {
     registerDecorator({
       target: object.constructor,
       propertyName: propertyName,
@@ -34,8 +34,8 @@ export class NotOverlappingForTheaterRule
   async validate(value: string, args: ValidationArguments) {
     const [endDateProperty, theaterIdPropertyName] = args.constraints;
 
-    const endDate = (args.object as unknown)[endDateProperty];
-    const theaterId = (args.object as unknown)[theaterIdPropertyName];
+    const endDate = (args.object as any)[endDateProperty];
+    const theaterId = (args.object as any)[theaterIdPropertyName];
 
     return this.showService
       .findAll({
@@ -64,7 +64,7 @@ export class NotOverlappingForTheaterRule
 }
 
 export function IsShow(validationOptions?: ValidationOptions) {
-  return function (object: any, propertyName: string) {
+  return function (object: object, propertyName: string) {
     registerDecorator({
       target: object.constructor,
       propertyName: propertyName,

@@ -9,7 +9,7 @@ import {
 import { TheaterService } from './theater.service';
 
 export function IsTheater(validationOptions?: ValidationOptions) {
-  return function (object: unknown, propertyName: string) {
+  return function (object: object, propertyName: string) {
     registerDecorator({
       target: object.constructor,
       propertyName: propertyName,
@@ -37,7 +37,7 @@ export class TheaterExistsRule implements ValidatorConstraintInterface {
 }
 
 export function IsUniqueTheaterName(validationOptions?: ValidationOptions) {
-  return function (object: unknown, propertyName: string) {
+  return function (object: object, propertyName: string) {
     registerDecorator({
       target: object.constructor,
       propertyName: propertyName,

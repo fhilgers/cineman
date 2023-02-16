@@ -9,7 +9,7 @@ import {
 import { MovieService } from './movie.service';
 
 export function IsMovie(validationOptions?: ValidationOptions) {
-  return function (object: unknown, propertyName: string) {
+  return function (object: object, propertyName: string) {
     registerDecorator({
       target: object.constructor,
       propertyName: propertyName,
@@ -25,7 +25,7 @@ export class MovieExistsRule implements ValidatorConstraintInterface {
   constructor(private readonly MovieService: MovieService) {}
 
   async validate(id: string) {
-    return this.MovieService.findOne({ id })
+    return this.MovieService.findOne({ where: { id } })
       .then(() => true)
       .catch(() => false);
   }
@@ -36,7 +36,7 @@ export class MovieExistsRule implements ValidatorConstraintInterface {
 }
 
 export function IsUniqueMovieName(validationOptions?: ValidationOptions) {
-  return function (object: unknown, propertyName: string) {
+  return function (object: object, propertyName: string) {
     registerDecorator({
       target: object.constructor,
       propertyName: propertyName,
@@ -52,7 +52,7 @@ export class UniqueMovieNameRule implements ValidatorConstraintInterface {
   constructor(private readonly MovieService: MovieService) {}
 
   async validate(name: string) {
-    return this.MovieService.findOne({ name })
+    return this.MovieService.findOne({ where: { name } })
       .then(() => false)
       .catch(() => true);
   }

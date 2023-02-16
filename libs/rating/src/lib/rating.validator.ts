@@ -12,7 +12,7 @@ export function IsMovieRatingUniqueForCustomer(
   customerIdProperty: string,
   validationOptions?: ValidationOptions
 ) {
-  return function (object: unknown, propertyName: string) {
+  return function (object: object, propertyName: string) {
     registerDecorator({
       target: object.constructor,
       propertyName: propertyName,
@@ -32,7 +32,7 @@ export class UniqueMovieRatingForCustomerRule
 
   async validate(value: string, args: ValidationArguments) {
     const [customerIdProperty] = args.constraints;
-    const customerId = (args.object as unknown)[customerIdProperty];
+    const customerId = (args.object as any)[customerIdProperty];
 
     return this.ratingService
       .findOne({ customerId_movieId: { movieId: value, customerId } })
@@ -42,7 +42,7 @@ export class UniqueMovieRatingForCustomerRule
 
   defaultMessage(args: ValidationArguments) {
     const [customerIdProperty] = args.constraints;
-    const customerId = (args.object as unknown)[customerIdProperty];
+    const customerId = (args.object as any)[customerIdProperty];
 
     return `Rating for movie ${args.value} already exists from customer with id ${customerId}`;
   }

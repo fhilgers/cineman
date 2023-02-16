@@ -12,7 +12,7 @@ export function IsSeatUniqueForShow(
   showIdProperty: string,
   validationOptions?: ValidationOptions
 ) {
-  return function (object: unknown, propertyName: string) {
+  return function (object: object, propertyName: string) {
     registerDecorator({
       target: object.constructor,
       propertyName: propertyName,
@@ -30,7 +30,7 @@ export class UniqueSeatForShowRule implements ValidatorConstraintInterface {
 
   async validate(value: string, args: ValidationArguments) {
     const [showIdProperty] = args.constraints;
-    const showId = (args.object as unknown)[showIdProperty];
+    const showId = (args.object as any)[showIdProperty];
 
     return this.ticketService
       .findOne({ seatId_showId: { seatId: value, showId } })
@@ -40,7 +40,7 @@ export class UniqueSeatForShowRule implements ValidatorConstraintInterface {
 
   defaultMessage(args: ValidationArguments) {
     const [showIdProperty] = args.constraints;
-    const showId = (args.object as unknown)[showIdProperty];
+    const showId = (args.object as any)[showIdProperty];
 
     return `Ticket for seat ${args.value} already exists for Show with id ${showId}`;
   }

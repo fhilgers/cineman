@@ -12,7 +12,7 @@ export function IsSeatUniqueForTheater(
   theaterIdProperty: string,
   validationOptions?: ValidationOptions
 ) {
-  return function (object: unknown, propertyName: string) {
+  return function (object: object, propertyName: string) {
     registerDecorator({
       target: object.constructor,
       propertyName: propertyName,
@@ -32,7 +32,7 @@ export class UniqueNumberForTheaterRule
 
   async validate(value: number, args: ValidationArguments) {
     const [theaterIdPropertyName] = args.constraints;
-    const theaterId = (args.object as unknown)[theaterIdPropertyName];
+    const theaterId = (args.object as any)[theaterIdPropertyName];
 
     return this.seatService
       .findOne({ number_theaterId: { number: value, theaterId } })
@@ -42,14 +42,14 @@ export class UniqueNumberForTheaterRule
 
   defaultMessage(args: ValidationArguments) {
     const [theaterIdPropertyName] = args.constraints;
-    const theaterId = (args.object as unknown)[theaterIdPropertyName];
+    const theaterId = (args.object as any)[theaterIdPropertyName];
 
     return `Seat with number ${args.value} already exists for theater with id ${theaterId}`;
   }
 }
 
 export function IsSeat(validationOptions?: ValidationOptions) {
-  return function (object: any, propertyName: string) {
+  return function (object: object, propertyName: string) {
     registerDecorator({
       target: object.constructor,
       propertyName: propertyName,

@@ -9,7 +9,7 @@ import {
 import { CustomerService } from './customer.service';
 
 export function IsCustomer(validationOptions?: ValidationOptions) {
-  return function (object: unknown, propertyName: string) {
+  return function (object: object, propertyName: string) {
     registerDecorator({
       target: object.constructor,
       propertyName: propertyName,
